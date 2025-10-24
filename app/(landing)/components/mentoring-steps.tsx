@@ -60,7 +60,7 @@ export default function MentoringComponent() {
   ];
 
   return (
-    <section className="relative mx-10 py-20 bg-gradient-to-br from-slate-100 via-white to-purple-50 overflow-hidden">
+    <section className="relative p-20 bg-gradient-to-br from-slate-100 via-white to-purple-50 overflow-hidden">
       {/* Background Graphics */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Abstract shapes */}

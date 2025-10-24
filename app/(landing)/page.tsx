@@ -46,7 +46,7 @@ export default function Home() {
           </a>
         </div>
       </div>
-      <div className="max-w-8xl py-5 space-y-24 mx-auto px-4 sm:px-6 lg:px-4">
+      <div className="max-w-8xl py-5 mx-auto px-4 sm:px-6 lg:px-4">
         {/* Gradient Strip */}
 
         <Hero />

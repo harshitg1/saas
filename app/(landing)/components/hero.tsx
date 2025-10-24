@@ -261,7 +261,7 @@ export default function Hero() {
                   </span>
                 </h1>
                 <div className="h-12 flex items-center">
-                  <p className="text-lg md:text-lg text-purple-600 font-semibold">
+                  <p className="text-lg md:text-lg text-primary font-semibold">
                     {HERO_CONTENT.headlines.subheadline}{" "}
                     <span className="inline-block min-w-[200px]">
                       {displayText}
@@ -280,7 +280,7 @@ export default function Hero() {
                 <div className="flex gap-3 items-start pl-2">
                   <p className="text-sm text-white/90 leading-relaxed pr-2">
                     {HERO_CONTENT.valueProposition.text}{" "}
-                    <span className="text-purple-600">
+                    <span className="text-primary/10">
                       {HERO_CONTENT.valueProposition.highlight}
                     </span>
                     {HERO_CONTENT.valueProposition.continuation}

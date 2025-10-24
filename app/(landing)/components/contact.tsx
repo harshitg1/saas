@@ -39,7 +39,7 @@ const Contact = () => {
   };
 
   return (
-    <section className=" bg-white relative overflow-hidden">
+    <section className=" bg-white py-20 relative overflow-hidden">
       <div className="max-w-5xl pb-4 mx-auto px-4 sm:px-6 relative z-20">
         {/* Header */}
         <motion.div

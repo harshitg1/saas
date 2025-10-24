@@ -92,7 +92,7 @@ export default function PremiumCourses() {
   ];
 
   return (
-    <section className="w-full  px-4 sm:px-8 lg:px-16 ">
+    <section className="w-full py-20  px-4 sm:px-8 lg:px-16 ">
       {/* Heading */}
       <div className="text-center max-w-2xl mx-auto mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">

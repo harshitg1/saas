@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section className="relative py-24 bg-gray-50 overflow-hidden">
+    <section className="relative py-20 bg-gray-50 overflow-hidden">
       {/* Background shapes */}
       <div className="absolute -top-32 -left-32 w-72 h-72 rounded-full bg-purple-300/30 blur-3xl z-0"></div>
       <div className="absolute -bottom-32 -right-32 w-72 h-72 rounded-full bg-indigo-300/30 blur-3xl z-0"></div>
