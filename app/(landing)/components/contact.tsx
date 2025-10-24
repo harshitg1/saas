@@ -79,10 +79,10 @@ const Contact = () => {
                   </h3>
                 </div>
                 <a
-                  href="tel:+916393142456"
+                  href="tel:+918577018585"
                   className="text-sm font-bold text-theme-primary hover:text-theme-primary-light"
                 >
-                  +91 6393142456
+                  +91 8577018585
                 </a>
               </div>
 
