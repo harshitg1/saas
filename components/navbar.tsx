@@ -53,8 +53,8 @@ export default function Navbar() {
                 className={clsx(
                   "transition-colors",
                   pathname === href
-                    ? "text-theme-primary font-medium"
-                    : "text-slate-900 dark:text-white hover:text-theme-primary"
+                    ? "border-b-2 font-medium"
+                    : "text-slate-600 dark:text-white hover:text-theme-primary"
                 )}
               >
                 {label}
@@ -68,7 +68,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden text-slate-900 dark:text-white"
+                className="md:hidden text-slate-600 dark:text-white"
               >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>
@@ -94,7 +94,7 @@ export default function Navbar() {
                     className="object-contain"
                     priority
                   />
-                  <span className="text-lg font-bold text-slate-900 dark:text-white">
+                  <span className="text-lg font-bold text-slate-600 dark:text-white">
                     Legacy-85
                   </span>
                 </Link>
@@ -111,7 +111,7 @@ export default function Navbar() {
                       "block py-2 text-lg transition-colors",
                       pathname === href
                         ? "text-theme-primary font-medium"
-                        : "text-slate-900 dark:text-white hover:text-theme-primary"
+                        : "text-slate-600 dark:text-white hover:text-theme-primary"
                     )}
                   >
                     {label}
