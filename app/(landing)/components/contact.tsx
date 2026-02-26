@@ -7,14 +7,12 @@ import {
   Mail,
   MapPin,
   Send,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
   Clock,
   Globe,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { Card, CardContent } from "@/components/ui/card";
+import ContactSupport from "./cont";
 
 interface ContactFormData {
   name: string;
@@ -40,7 +38,7 @@ const Contact = () => {
 
   return (
     <section className=" bg-white py-20 relative overflow-hidden">
-      <div className="max-w-5xl pb-4 mx-auto px-4 sm:px-6 relative z-20">
+      <div className="max-w-7xl pb-4 mx-auto px-4 sm:px-6 relative z-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -57,18 +55,18 @@ const Contact = () => {
             our services.
           </p>
         </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Contact Info */}
-          <motion.div
+      
+        <div className="w-full">
+             <ContactSupport/>
+           {/* <motion.div
             initial={{ opacity: 0, x: -15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-5"
+            className="flex "
           >
-            <div className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm space-y-4">
-              {/* Phone */}
+            <div className="flex bg-white rounded-xl p-5 border border-slate-100 shadow-sm space-y-4">
+             
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="p-2 bg-theme-primary/10 rounded">
@@ -86,7 +84,7 @@ const Contact = () => {
                 </a>
               </div>
 
-              {/* Address */}
+           
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="p-2 bg-theme-primary/10 rounded">
@@ -103,8 +101,6 @@ const Contact = () => {
                   117/H-1/365 Pandu Nagar, Kanpur
                 </p>
               </div>
-
-              {/* Email */}
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="p-2 bg-theme-primary/10 rounded">
@@ -121,8 +117,6 @@ const Contact = () => {
                   contact@legacy85mentoringpvtltd.com
                 </a>
               </div>
-
-              {/* Website */}
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="p-2 bg-theme-primary/10 rounded">
@@ -141,8 +135,6 @@ const Contact = () => {
                   www.legacy85mentoringpvtltd.com
                 </a>
               </div>
-
-              {/* Hours */}
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <div className="p-2 bg-theme-primary/10 rounded">
@@ -157,7 +149,6 @@ const Contact = () => {
                 <p className="text-xs text-slate-600">Sun: Closed</p>
               </div>
 
-              {/* Socials */}
               <div>
                 <h3 className="text-sm font-semibold text-slate-800 mb-1">
                   Follow Us
@@ -175,10 +166,11 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
-
+          </motion.div>  */}
+         
+       
           {/* Form */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 15 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -280,8 +272,9 @@ const Contact = () => {
                 </button>
               </form>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
+        
       </div>
     </section>
   );
