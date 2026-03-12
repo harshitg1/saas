@@ -243,43 +243,7 @@ export default function AboutPage() {
       <section className="py-20 md:py-32 overflow-hidden bg-white dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-6 space-y-24 md:space-y-32">
           
-          {/* Block 1: Directors */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-            {/* Image */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="w-[500px] h-[300px] md:h-[500px] relative rounded-2xl overflow-hidden  flex items-center justify-center  "
-            >
-              <Image src={ABOUT_PAGE_CONTENT.directors.image} alt="Directors" fill className="object-contain" />
-              <div className="absolute inset-0  mix-blend-multiply" />
-            </motion.div>
-
-            {/* Text Minimal Panel */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="w-full"
-            >
-              <div className="pr-4 md:pr-10">
-                <span className="text-xs uppercase tracking-widest text-primary font-bold mb-3 block">Leadership</span>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-2 leading-tight">
-                  {ABOUT_PAGE_CONTENT.directors.sectionTitle}
-                </h2>
-                <h3 className="text-lg text-slate-500 dark:text-slate-400 font-medium mb-6">
-                  {ABOUT_PAGE_CONTENT.directors.names}
-                </h3>
-                <div className="space-y-5 text-slate-600 dark:text-slate-300 text-[15px] leading-relaxed font-light">
-                  <p>{ABOUT_PAGE_CONTENT.directors.paragraphs[0]}</p>
-                  <p>{ABOUT_PAGE_CONTENT.directors.paragraphs[1]}</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+    
 
           {/* Block 2: Faculty */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">

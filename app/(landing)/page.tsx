@@ -3,7 +3,7 @@ import Contact from "./components/contact";
 import Events from "./components/event";
 import MentoringComponent from "./components/mentoring-steps";
 import WhyChooseUs from "./components/why-choose-us";
-import CoursesSection from "./components/courses";
+import CoursesSection from "./components/landing-courses";
 import Footer from "./components/footer";
 import Hero from "./components/hero";
 import { Phone, Mail, MapPin } from "lucide-react";
