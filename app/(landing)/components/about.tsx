@@ -41,9 +41,9 @@ const ABOUT_CONTENT = {
     },
   },
   highlights: [
-    { icon: "Users", value: "1,485+", label: "Trusted Clients" },
+    { icon: "Users", value: "1,485+", label: "Students" },
     { icon: "Award", value: "96%", label: "Satisfaction Rate" },
-    { icon: "TrendingUp", value: "30+%", label: "Average Portfolio Growth" },
+    { icon: "TrendingUp", value: "30%", label: "Average Portfolio Growth" },
   ],
   features: [
     {

@@ -104,7 +104,7 @@ const ABOUT_PAGE_CONTENT = {
   statistics: [
     {
       number: "1,485+",
-      label: "Trusted Clients",
+      label: "Students",
       icon: "Users",
     },
     {
@@ -118,7 +118,7 @@ const ABOUT_PAGE_CONTENT = {
       icon: "TrendingUp",
     },
     {
-      number: "30+%",
+      number: "30%",
       label: "Average Portfolio Growth",
       icon: "LineChart",
     },

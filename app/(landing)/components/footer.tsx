@@ -33,7 +33,7 @@ const contactInfo = [
   },
   {
     icon: <Phone size={18} className="text-theme-primary mr-2 flex-shrink-0" />,
-    content: "+91 6393142456",
+    content: "+91 8577018585",
     isLink: false,
   },
   {

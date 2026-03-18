@@ -115,7 +115,7 @@ export default function MentoringComponent() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section with Left-Right Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-16 gap-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-14 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -123,15 +123,15 @@ export default function MentoringComponent() {
             transition={{ duration: 0.5 }}
             className="lg:w-1/2"
           >
-            <div className="inline-block px-4 rounded-full bg-theme-primary/20 backdrop-blur-sm mb-4">
+            <div className="inline-block px-4 rounded-full bg-theme-primary/20 backdrop-blur-sm mb-2">
               <span className="text-sm font-semibold tracking-wide text-theme-primary uppercase">
                 Personalized Mentorship
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight">
+            <h2 className="text-5xl  font-bold text-slate-900 mb-3 leading-tight">
               How We Deliver
-              <span className="block text-theme-primary mt-1">Outstanding</span>
+              <span className="block text-theme-primary ">Outstanding</span>
               <span className="block">Mentoring Results</span>
             </h2>
           </motion.div>
@@ -149,14 +149,14 @@ export default function MentoringComponent() {
               financial markets and traders.
             </p>
 
-            <div className="mt-6 space-y-3">
+            <div className="mt-2 space-y-2">
               {[
                 "One-on-one personalized mentoring",
                 "Live trade analysis and execution",
                 "24/7 trader support community",
               ].map((item, i) => (
                 <div key={i} className="flex items-start space-x-2">
-                  <CheckCircle className="w-5 h-5 text-theme-primary flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-theme-primary shrink-0 mt-0.5" />
                   <span className="text-slate-700">{item}</span>
                 </div>
               ))}
@@ -258,7 +258,7 @@ export default function MentoringComponent() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-3 bg-theme-primary hover:bg-theme-primary/90 text-white font-semibold rounded-lg shadow-lg shadow-theme-primary/20 hover:shadow-xl hover:shadow-theme-primary/30 transition-all duration-300 flex items-center">
+                <button className="px-6 py-3 bg-theme-primary hover:bg-theme-primary/90  font-semibold rounded-lg shadow-lg shadow-theme-primary/20 hover:shadow-xl hover:shadow-theme-primary/30 transition-all duration-300 flex items-center">
                   <Users className="mr-2 w-5 h-5" />
                   <span>Join Our Program</span>
                 </button>
