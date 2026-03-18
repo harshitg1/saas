@@ -431,212 +431,214 @@ export default function CoursesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 selection:bg-purple-500/30">
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-24 md:pt-32 md:pb-36 overflow-hidden flex items-center justify-center border-b border-slate-200/50 dark:border-slate-800/50">
-        {/* Ambient Glows */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-purple-500/10 dark:bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/10 dark:bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
+    // <div className="min-h-screen bg-slate-50 dark:bg-slate-950 selection:bg-purple-500/30">
+    //   {/* Hero Section */}
+    //   <section className="relative pt-20 pb-24 md:pt-32 md:pb-36 overflow-hidden flex items-center justify-center border-b border-slate-200/50 dark:border-slate-800/50">
+    //     {/* Ambient Glows */}
+    //     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-purple-500/10 dark:bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
+    //     <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/10 dark:bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-md mb-8 shadow-sm">
-             <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-             <span className="text-sm font-semibold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
-               Explore
-             </span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.1]">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">Courses</span> Catalog
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-light max-w-2xl mx-auto">
-            Discover our premium programs and unlock your potential with expert-led financial education.
-          </p>
-        </div>
-      </section>
+    //     <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+    //       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-md mb-8 shadow-sm">
+    //          <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+    //          <span className="text-sm font-semibold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
+    //            Explore
+    //          </span>
+    //       </div>
+    //       <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.1]">
+    //         Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">Courses</span> Catalog
+    //       </h1>
+    //       <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-light max-w-2xl mx-auto">
+    //         Discover our premium programs and unlock your potential with expert-led financial education.
+    //       </p>
+    //     </div>
+    //   </section>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Search */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Search</h3>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search courses..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-shadow"
-                />
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              </div>
-            </div>
+    //   {/* Main Content */}
+    //   <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+    //     <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    //       {/* Sidebar */}
+    //       <div className="lg:col-span-1 space-y-6">
+    //         {/* Search */}
+    //         <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
+    //           <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Search</h3>
+    //           <div className="relative">
+    //             <input
+    //               type="text"
+    //               placeholder="Search courses..."
+    //               value={searchQuery}
+    //               onChange={(e) => setSearchQuery(e.target.value)}
+    //               className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-shadow"
+    //             />
+    //             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+    //           </div>
+    //         </div>
 
-            {/* Course Categories */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Categories</h3>
-              <div className="space-y-1">
-                {categories.map((cat, idx) => (
-                  <button
-                    key={idx}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <cat.icon className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                      <span className="font-medium text-sm">{cat.name}</span>
-                    </div>
-                    <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">
-                      {cat.count}
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
+    //         {/* Course Categories */}
+    //         <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
+    //           <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Categories</h3>
+    //           <div className="space-y-1">
+    //             {categories.map((cat, idx) => (
+    //               <button
+    //                 key={idx}
+    //                 className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
+    //               >
+    //                 <div className="flex items-center gap-3">
+    //                   <cat.icon className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+    //                   <span className="font-medium text-sm">{cat.name}</span>
+    //                 </div>
+    //                 <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">
+    //                   {cat.count}
+    //                 </span>
+    //               </button>
+    //             ))}
+    //           </div>
+    //         </div>
 
-            {/* Instructors */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Instructors</h3>
-              <div className="space-y-1">
-                {instructors.map((instructor, idx) => (
-                  <button
-                    key={idx}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
-                  >
-                    <span className="font-medium text-sm">{instructor}</span>
-                    <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">3</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+    //         {/* Instructors */}
+    //         <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
+    //           <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Instructors</h3>
+    //           <div className="space-y-1">
+    //             {instructors.map((instructor, idx) => (
+    //               <button
+    //                 key={idx}
+    //                 className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
+    //               >
+    //                 <span className="font-medium text-sm">{instructor}</span>
+    //                 <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">3</span>
+    //               </button>
+    //             ))}
+    //           </div>
+    //         </div>
 
-            {/* Price With Courses */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Pricing Options</h3>
-              <div className="space-y-1">
-                {priceRanges.map((range, idx) => (
-                  <button
-                    key={idx}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
-                  >
-                    <span className="font-medium text-sm">{range}</span>
-                    <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">3</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
+    //         {/* Price With Courses */}
+    //         <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
+    //           <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Pricing Options</h3>
+    //           <div className="space-y-1">
+    //             {priceRanges.map((range, idx) => (
+    //               <button
+    //                 key={idx}
+    //                 className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
+    //               >
+    //                 <span className="font-medium text-sm">{range}</span>
+    //                 <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">3</span>
+    //               </button>
+    //             ))}
+    //           </div>
+    //         </div>
+    //       </div>
 
-          {/* Courses Grid */}
-          <div className="lg:col-span-3">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md p-4 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
-              <p className="text-slate-600 dark:text-slate-400 font-medium">
-                We found <span className="font-bold text-slate-900 dark:text-white">3 courses</span> for you
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 hidden sm:flex">
-                  <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">Sort By:</span>
-                  <select className="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm outline-none focus:ring-2 focus:ring-purple-500/50 text-slate-700 dark:text-slate-300 font-medium cursor-pointer">
-                    <option>Latest</option>
-                    <option>Popular</option>
-                    <option>Rating</option>
-                  </select>
-                </div>
-                <div className="flex gap-1 bg-white dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
-                  <button
-                    onClick={() => setViewMode("grid")}
-                    className={`p-2 rounded-lg transition-colors ${viewMode === "grid" ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
-                  >
-                    <Grid className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode("list")}
-                    className={`p-2 rounded-lg transition-colors ${viewMode === "list" ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
-                  >
-                    <List className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
+    //       {/* Courses Grid */}
+    //       <div className="lg:col-span-3">
+    //         {/* Header */}
+    //         <div className="flex items-center justify-between mb-8 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md p-4 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
+    //           <p className="text-slate-600 dark:text-slate-400 font-medium">
+    //             We found <span className="font-bold text-slate-900 dark:text-white">3 courses</span> for you
+    //           </p>
+    //           <div className="flex items-center gap-4">
+    //             <div className="flex items-center gap-2 hidden sm:flex">
+    //               <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">Sort By:</span>
+    //               <select className="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm outline-none focus:ring-2 focus:ring-purple-500/50 text-slate-700 dark:text-slate-300 font-medium cursor-pointer">
+    //                 <option>Latest</option>
+    //                 <option>Popular</option>
+    //                 <option>Rating</option>
+    //               </select>
+    //             </div>
+    //             <div className="flex gap-1 bg-white dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+    //               <button
+    //                 onClick={() => setViewMode("grid")}
+    //                 className={`p-2 rounded-lg transition-colors ${viewMode === "grid" ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
+    //               >
+    //                 <Grid className="w-4 h-4" />
+    //               </button>
+    //               <button
+    //                 onClick={() => setViewMode("list")}
+    //                 className={`p-2 rounded-lg transition-colors ${viewMode === "list" ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
+    //               >
+    //                 <List className="w-4 h-4" />
+    //               </button>
+    //             </div>
+    //           </div>
+    //         </div>
 
-            {/* Courses */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {courses.map((course) => (
-                <div 
-                  key={course.id} 
-                  onClick={() => handleCourseClick(course)}
-                  className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-lg shadow-slate-200/20 dark:shadow-none border border-slate-200/50 dark:border-slate-800/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col"
-                >
-                  {/* Course Image */}
-                  <div className={`${course.image} h-48 flex items-center justify-center text-6xl relative overflow-hidden`}>
-                    <span className="relative z-10 group-hover:scale-110 transition-transform duration-500">{course.icon}</span>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
+    //         {/* Courses */}
+    //         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    //           {courses.map((course) => (
+    //             <div 
+    //               key={course.id} 
+    //               onClick={() => handleCourseClick(course)}
+    //               className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-lg shadow-slate-200/20 dark:shadow-none border border-slate-200/50 dark:border-slate-800/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col"
+    //             >
+    //               {/* Course Image */}
+    //               <div className={`${course.image} h-48 flex items-center justify-center text-6xl relative overflow-hidden`}>
+    //                 <span className="relative z-10 group-hover:scale-110 transition-transform duration-500">{course.icon}</span>
+    //                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    //               </div>
 
-                  {/* Course Info */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="px-3 py-1 bg-purple-100/50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 text-xs rounded-full font-bold uppercase tracking-wider">
-                        {course.category}
-                      </span>
-                      <span className="text-slate-900 dark:text-white font-extrabold text-lg">{course.price}</span>
-                    </div>
+    //               {/* Course Info */}
+    //               <div className="p-6 flex flex-col flex-1">
+    //                 <div className="flex items-center justify-between mb-4">
+    //                   <span className="px-3 py-1 bg-purple-100/50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 text-xs rounded-full font-bold uppercase tracking-wider">
+    //                     {course.category}
+    //                   </span>
+    //                   <span className="text-slate-900 dark:text-white font-extrabold text-lg">{course.price}</span>
+    //                 </div>
 
-                    <h3 className="font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 text-lg leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      {course.title}
-                    </h3>
+    //                 <h3 className="font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 text-lg leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+    //                   {course.title}
+    //                 </h3>
 
-                    <div className="flex items-center gap-3 mb-5 mt-auto">
-                      <div className="w-10 h-10 bg-slate-200 dark:bg-slate-800 rounded-full flex-shrink-0 border-2 border-white dark:border-slate-900 shadow-sm"></div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-200 truncate">{course.instructor}</p>
-                        <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                          <Users className="w-3.5 h-3.5" />
-                          <span>{course.students.toLocaleString()} Students</span>
-                        </div>
-                      </div>
-                    </div>
+    //                 <div className="flex items-center gap-3 mb-5 mt-auto">
+    //                   <div className="w-10 h-10 bg-slate-200 dark:bg-slate-800 rounded-full flex-shrink-0 border-2 border-white dark:border-slate-900 shadow-sm"></div>
+    //                   <div className="flex-1 min-w-0">
+    //                     <p className="text-sm font-semibold text-slate-900 dark:text-slate-200 truncate">{course.instructor}</p>
+    //                     <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+    //                       <Users className="w-3.5 h-3.5" />
+    //                       <span>{course.students.toLocaleString()} Students</span>
+    //                     </div>
+    //                   </div>
+    //                 </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 relative">
-                      <div className="flex items-center gap-1.5">
-                        <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-3.5 h-3.5 ${i < Math.floor(course.rating) ? "fill-yellow-400 text-yellow-400" : "fill-slate-200 text-slate-200 dark:fill-slate-700 dark:text-slate-700"}`}
-                          />
-                        ))}
-                        </div>
-                        <span className="text-xs font-bold text-slate-700 dark:text-slate-300 ml-1">{course.rating}</span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 ml-1">({course.reviews})</span>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                        <ArrowLeft className="w-4 h-4 text-slate-400 dark:text-slate-500 rotate-180" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+    //                 <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 relative">
+    //                   <div className="flex items-center gap-1.5">
+    //                     <div className="flex gap-0.5">
+    //                     {[...Array(5)].map((_, i) => (
+    //                       <Star
+    //                         key={i}
+    //                         className={`w-3.5 h-3.5 ${i < Math.floor(course.rating) ? "fill-yellow-400 text-yellow-400" : "fill-slate-200 text-slate-200 dark:fill-slate-700 dark:text-slate-700"}`}
+    //                       />
+    //                     ))}
+    //                     </div>
+    //                     <span className="text-xs font-bold text-slate-700 dark:text-slate-300 ml-1">{course.rating}</span>
+    //                     <span className="text-xs text-slate-500 dark:text-slate-400 ml-1">({course.reviews})</span>
+    //                   </div>
+    //                   <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+    //                     <ArrowLeft className="w-4 h-4 text-slate-400 dark:text-slate-500 rotate-180" />
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //             </div>
+    //           ))}
+    //         </div>
 
-            {/* Pagination */}
-            <div className="flex justify-center mt-12 gap-2">
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">
-                Previous
-              </button>
-              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">1</button>
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">2</button>
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">3</button>
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
+    //         {/* Pagination */}
+    //         <div className="flex justify-center mt-12 gap-2">
+    //           <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">
+    //             Previous
+    //           </button>
+    //           <button className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">1</button>
+    //           <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">2</button>
+    //           <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">3</button>
+    //           <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">
+    //             Next
+    //           </button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+    <>
+    <CourseContentPage />
+    </>
   );
 }
