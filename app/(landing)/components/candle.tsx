@@ -16,14 +16,14 @@ const candles: Candle[] = [
   { open: 60, close: 50, high: 65, low: 45 },
 ];
 
-export default function CandlestickStrip() {
-  const chartHeight = 80; // total chart height in px
+export default function CandlestickStrip({ className = "" }: { className?: string }) {
+  const chartHeight = 64; // total chart height in px
   const maxValue = Math.max(...candles.flatMap(c => [c.high, c.low]));
   const minValue = Math.min(...candles.flatMap(c => [c.high, c.low]));
   const scale = chartHeight / (maxValue - minValue);
 
   return (
-    <div className="absolute top-14 left-4 flex flex-row items-end space-x-2 z-20 h-20">
+    <div className={`absolute z-20 hidden h-16 w-fit flex-row items-end space-x-2 md:flex ${className}`}>
       {candles.map((candle, idx) => {
         const isBullish = candle.close >= candle.open;
         const bodyHeight = Math.abs(candle.close - candle.open) * scale;

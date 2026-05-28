@@ -171,18 +171,142 @@ export default function Hero() {
   }[HERO_CONTENT.badge.pulseColor];
 
   return (
-    <section className="relative min-h-[640px] sm:min-h-[600px] md:min-h-[620px] lg:min-h-[450px] xl:min-h-[520px] max-w-[1400px] mx-auto overflow-hidden rounded-xl sm:rounded-2xl border border-slate-200/20 shadow-2xl xl:my-4 bg-slate-950/20 backdrop-blur-sm">
+    <>
+      <section className="relative lg:hidden overflow-hidden rounded-2xl bg-slate-950 text-white shadow-2xl">
+        <div className="absolute inset-0">
+          <Image
+            src={HERO_CONTENT.backgroundImage.src}
+            alt={HERO_CONTENT.backgroundImage.alt}
+            fill
+            className="object-cover"
+            priority
+            quality={95}
+            sizes="100vw"
+            style={{ objectPosition: "center top" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/45 to-slate-950/82" />
+        </div>
+
+        <div className="relative z-10 px-4 py-5 sm:px-6 sm:py-7">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold text-green-200 backdrop-blur-md">
+              <span className="relative flex h-2 w-2">
+                <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${pulseColorClass} opacity-75`} />
+                <span className={`relative inline-flex h-2 w-2 rounded-full ${pulseColorClass}`} />
+              </span>
+              {HERO_CONTENT.badge.text}
+            </div>
+
+            <h1 className="mt-4 text-[2.35rem] font-extrabold leading-[1.03] tracking-tight text-white sm:text-5xl">
+              Learn Stock Markets from Kanpur's Practitioners
+            </h1>
+
+            <p className="mt-4 max-w-xl text-base leading-7 text-white/78">
+              Structured stock market training, live market analysis, and
+              personal mentorship for beginners and aspiring traders.
+            </p>
+
+            <div className="mt-5 flex min-h-7 items-center text-sm font-bold text-primary">
+              <span>{HERO_CONTENT.headlines.subheadline}</span>
+              <span className="ml-1 inline-block min-w-0 text-white">
+                {displayText}
+                <span className="animate-pulse text-primary">|</span>
+              </span>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <button className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 font-bold text-white shadow-lg shadow-black/20 transition active:scale-[0.98]">
+                {getIcon(HERO_CONTENT.cta.primary.icon, "h-5 w-5")}
+                {HERO_CONTENT.cta.primary.text}
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </button>
+
+              <button className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3 font-bold text-white backdrop-blur-md transition active:scale-[0.98]">
+                {getIcon(HERO_CONTENT.cta.secondary.icon, "h-5 w-5")}
+                {HERO_CONTENT.cta.secondary.text}
+              </button>
+            </div>
+
+            <div className="mt-6 grid grid-cols-3 gap-2 rounded-2xl border border-white/60 bg-white/85 p-2 shadow-xl shadow-black/20 backdrop-blur-md">
+              {[
+                { value: "1,485+", label: "Learners" },
+                { value: "5+", label: "Years" },
+                { value: "96%", label: "Satisfaction" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-xl bg-slate-50 px-2 py-3 text-center shadow-sm">
+                  <div className="text-base font-extrabold leading-none text-slate-950">
+                    {item.value}
+                  </div>
+                  <div className="mt-1 text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                    {item.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-7 rounded-2xl border border-white/12 bg-white/[0.08] p-4 backdrop-blur-xl">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <div className="mb-2 inline-flex rounded-full bg-green-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-green-200">
+                  Featured Course
+                </div>
+                <h2 className="text-xl font-extrabold leading-tight text-white">
+                  Basic Stock Market Course
+                </h2>
+                <p className="mt-1 text-xs font-medium text-white/60">
+                  Beginner friendly · Live guidance · Risk management basics
+                </p>
+              </div>
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/25">
+                <GraduationCap className="h-6 w-6 text-white" />
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-2">
+              {[
+                ["Live", "Sessions"],
+                ["1:1", "Mentorship"],
+                ["Charts", "Practice"],
+              ].map(([value, label]) => (
+                <div key={label} className="rounded-xl bg-slate-950/55 px-2 py-3 text-center">
+                  <div className="text-sm font-extrabold text-white">{value}</div>
+                  <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/55">
+                    {label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 space-y-2.5">
+              {HERO_CONTENT.featureCard.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-2 text-sm text-white/82">
+                  <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-green-300" />
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <button className="mt-5 inline-flex w-full min-h-11 items-center justify-center gap-2 rounded-xl bg-white text-sm font-extrabold text-slate-950 transition active:scale-[0.98]">
+              Start Learning
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative hidden h-[450px] max-w-[1400px] mx-auto overflow-hidden rounded-2xl border border-slate-200/20 shadow-2xl xl:my-4 bg-slate-950/20 backdrop-blur-sm lg:block xl:h-[520px]">
       {/* Background image & overlays */}
       <div className="absolute inset-0 z-0">
         <div
-          className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden"
-          style={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
+          className="absolute inset-0 rounded-2xl overflow-hidden"
+          style={{ clipPath: "polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%)" }}
         >
           <Image
             src={HERO_CONTENT.backgroundImage.src}
             alt={HERO_CONTENT.backgroundImage.alt}
             fill
-            className="object-cover object-center contrast-110 rounded-xl sm:rounded-2xl"
+            className="object-cover object-center contrast-110 rounded-2xl"
             priority
             quality={100}
             style={{
@@ -191,26 +315,26 @@ export default function Hero() {
               objectPosition: "center 25%",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/55 to-black/40 lg:bg-gradient-to-r lg:from-black/10 lg:via-transparent lg:to-transparent rounded-xl sm:rounded-2xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-transparent rounded-2xl"></div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent"></div>
         </div>
       </div>
 
       {/* Floating orbs */}
       <motion.div
-        className="absolute top-20 left-10 hidden sm:block w-20 h-20 bg-primary/20 rounded-full blur-3xl"
+        className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-3xl"
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, duration: 6 }}
       />
       <motion.div
-        className="absolute bottom-32 left-20 hidden sm:block w-16 h-16 bg-primary/30 rounded-full blur-2xl"
+        className="absolute bottom-32 left-20 w-16 h-16 bg-primary/30 rounded-full blur-2xl"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 5 }}
       />
 
       {/* Left-side cut gradient */}
       <div
-        className="absolute inset-0 z-1 hidden lg:block"
+        className="absolute inset-0 z-1"
         style={{ clipPath: "polygon(0% 0%, 42% 0%, 0% 100%)" }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-l-2xl"></div>
@@ -218,7 +342,7 @@ export default function Hero() {
       </div>
 
       {/* Diagonal border / cut effect */}
-      <div className="absolute inset-0 z-2 hidden lg:block">
+      <div className="absolute inset-0 z-2">
         <div
           className="absolute inset-0 border-r-4 border-blue-500/50"
           style={{
@@ -230,11 +354,11 @@ export default function Hero() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 py-8 sm:py-10 lg:py-12 flex items-center min-h-[inherit]">
-        <div className="container mx-auto px-4 sm:px-6">
+      <div className="relative z-10 py-12 flex items-center">
+        <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
             {/* Left-side static content */}
-            <div className="lg:col-span-5 space-y-4 sm:space-y-5 relative z-20">
+            <div className="lg:col-span-5 space-y-5 relative z-20">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white font-medium text-sm">
                 <span className="relative flex h-2 w-2">
@@ -252,7 +376,7 @@ export default function Hero() {
 
               {/* Headlines */}
               <div className="space-y-3">
-                <h1 className="text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
                   <span className="block text-white drop-shadow-lg">
                     {HERO_CONTENT.headlines.primary.line1}
                   </span>
@@ -260,10 +384,10 @@ export default function Hero() {
                     {HERO_CONTENT.headlines.primary.line2}
                   </span>
                 </h1>
-                <div className="min-h-14 flex items-center">
-                  <p className="text-base sm:text-lg text-primary font-semibold leading-snug">
+                <div className="h-12 flex items-center">
+                  <p className="text-lg md:text-lg text-primary font-semibold">
                     {HERO_CONTENT.headlines.subheadline}{" "}
-                    <span className="inline-block min-w-0 sm:min-w-[200px]">
+                    <span className="inline-block min-w-[200px]">
                       {displayText}
                       <span className="animate-pulse text-primary">|</span>
                     </span>
@@ -272,7 +396,7 @@ export default function Hero() {
               </div>
 
               {/* Value Proposition */}
-              <div className="relative max-w-md bg-[#111827]/95 backdrop-blur-lg rounded-xl p-3 overflow-hidden group">
+              <div className="relative max-w-md bg-[#111827] backdrop-blur-lg rounded-xl p-3 overflow-hidden group">
                 <div className="absolute inset-0 border border-slate-700/50 rounded-xl"></div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/40 via-blue-500/30 to-purple-900/30 rounded-xl opacity-0 blur-sm"></div>
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-purple-600"></div>
@@ -290,13 +414,13 @@ export default function Hero() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <button className="group inline-flex min-h-12 items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-primary text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                   {getIcon(HERO_CONTENT.cta.primary.icon, "w-5 h-5")}
                   {HERO_CONTENT.cta.primary.text}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
 
-                <button className="group inline-flex min-h-12 items-center justify-center gap-2 px-5 sm:px-6 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border border-white/30 hover:bg-white/20 transition-all duration-300">
+                <button className="group inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md text-white font-semibold rounded-lg border border-white/30 hover:bg-white/20 transition-all duration-300">
                   {getIcon(HERO_CONTENT.cta.secondary.icon, "w-5 h-5")}
                   {HERO_CONTENT.cta.secondary.text}
                 </button>
@@ -304,14 +428,14 @@ export default function Hero() {
             </div>
 
             {/* Right-side animated cards */}
-            <div className="lg:col-span-7 relative min-h-[210px] sm:min-h-[230px] lg:min-h-[280px]">
+            <div className="lg:col-span-7 relative">
               {/* Main feature card */}
               
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
-                className="relative z-20 bg-slate-950/85 rounded-2xl p-4 sm:p-6 border border-slate-700 shadow-2xl hover:bg-slate-900/90 transition-all duration-500 group max-w-sm mx-auto lg:ml-auto lg:mr-16"
+                className="relative z-20 bg-slate-950/85 rounded-2xl p-6 border border-slate-700 shadow-2xl hover:bg-slate-900/90 transition-all duration-500 group max-w-sm ml-auto mr-16"
               >
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
@@ -347,7 +471,7 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }}
-                className="absolute -top-4 right-1 sm:right-10 lg:top-0 lg:right-4 group"
+                className="absolute top-0 right-4 group"
               >
                 <div className="relative bg-slate-900 p-3 rounded-xl shadow-xl border border-white/40 z-30 transform hover:rotate-2 hover:scale-105 transition-all duration-300 max-w-[140px]">
                   <div className="flex items-center gap-2">
@@ -383,7 +507,7 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4, duration: 0.6, ease: "easeOut" }}
-                className="absolute -bottom-5 left-1 sm:left-auto sm:right-20 lg:bottom-0 group"
+                className="absolute bottom-0 right-20 group"
               >
                 <div className="relative bg-slate-900 p-3 rounded-xl shadow-xl border border-white/40 z-30 transform hover:-rotate-2 hover:scale-105 transition-all duration-300 max-w-[140px]">
                   <div className="flex items-center gap-2">
@@ -408,7 +532,7 @@ export default function Hero() {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.6, duration: 0.6, ease: "easeOut" }}
-                  className="absolute top-12 right-8 sm:right-20 lg:top-16 lg:right-11 group"
+                  className="absolute top-16 right-11 group"
                 >
                   <div className="relative bg-slate-800/80 backdrop-blur-lg p-2.5 rounded-full shadow-xl border border-white/40 z-30 transform hover:scale-110 transition-all duration-300">
                     <div className="p-1.5 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 shadow-md">
@@ -422,5 +546,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
+    </>
   );
 }
