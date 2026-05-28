@@ -1,16 +1,41 @@
-'use client';
-import { useState } from "react";
-import { Search, Grid, List, Clock, Users, Star, BookOpen, Code, Briefcase, Palette, TrendingUp, Award, Layers, Play, FileText, Download, CheckCircle, ArrowLeft, Video, Lock, MessageCircle } from "lucide-react";
-import CourseContentPage from "../components/check";
+"use client";
 
-// Type Definitions
+import { useMemo, useState } from "react";
+import type { ComponentType, ReactNode } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Award,
+  BarChart3,
+  BookOpen,
+  CheckCircle,
+  Clock,
+  Download,
+  FileText,
+  Grid,
+  Layers,
+  LineChart,
+  List,
+  Lock,
+  MessageCircle,
+  Play,
+  Search,
+  ShieldCheck,
+  Star,
+  TrendingUp,
+  Users,
+  Video,
+  WalletCards,
+} from "lucide-react";
+
+type CourseLevel = "Beginner" | "Intermediate" | "Advanced" | "Professional";
+type PriceFilter = "all" | "premium" | "discounted";
+type SortOption = "latest" | "popular" | "rating";
+
 interface Lecture {
   title: string;
-  duration?: string;
-  type: "video" | "section";
+  duration: string;
   isPreview?: boolean;
-  videos?: number;
-  previews?: number;
 }
 
 interface CourseSection {
@@ -18,16 +43,13 @@ interface CourseSection {
   chapters: number;
   videos: number;
   previews: number;
-  quizzes?: number;
-  resources?: number;
-  questions?: number;
   lectures: Lecture[];
 }
 
 interface Course {
   id: number;
   title: string;
-  category: string;
+  level: CourseLevel;
   instructor: string;
   instructorTitle: string;
   students: number;
@@ -35,608 +57,770 @@ interface Course {
   originalPrice: string;
   rating: number;
   reviews: number;
-  image: string;
-  icon: string;
+  accent: string;
+  Icon: ComponentType<{ className?: string }>;
   description: string;
   discount: string;
   lastUpdated: string;
   videoLessons: number;
-  quizzes: number;
   resources: number;
-  onlineJudge: number;
+  order: number;
   courseContent: CourseSection[];
   learningPoints: string[];
 }
 
-interface Category {
-  name: string;
-  count: number;
-  icon: React.ComponentType<{ className?: string }>;
-}
+const COURSES: Course[] = [
+  {
+    id: 1,
+    title: "Basic Stock Market Course",
+    level: "Beginner",
+    instructor: "Manvendra Singh",
+    instructorTitle: "Senior Trading Instructor",
+    students: 15420,
+    price: "INR 4,999",
+    originalPrice: "INR 9,999",
+    rating: 4.8,
+    reviews: 3245,
+    accent: "from-emerald-500 via-teal-500 to-cyan-500",
+    Icon: TrendingUp,
+    description:
+      "Start from the absolute basics and learn how markets work, how to buy and sell shares, and how to build a sensible long-term portfolio.",
+    discount: "50% OFF",
+    lastUpdated: "May 2025",
+    videoLessons: 85,
+    resources: 20,
+    order: 6,
+    courseContent: [
+      {
+        section: "Stock Market Basics",
+        chapters: 4,
+        videos: 15,
+        previews: 3,
+        lectures: [
+          { title: "What is the Stock Market?", duration: "10:15", isPreview: true },
+          { title: "How Exchanges Work", duration: "12:30", isPreview: true },
+          { title: "Opening a Demat Account", duration: "08:45", isPreview: true },
+        ],
+      },
+    ],
+    learningPoints: [
+      "Understand the core mechanics of the Indian stock market",
+      "Read basic charts, watchlists, and market data confidently",
+      "Differentiate trading, investing, risk, and time horizon",
+      "Build a diversified starter portfolio with position sizing",
+    ],
+  },
+  {
+    id: 2,
+    title: "Equity Edge: Momentum & Price Action",
+    level: "Intermediate",
+    instructor: "Manvendra Singh",
+    instructorTitle: "Senior Trading Instructor",
+    students: 8250,
+    price: "INR 7,499",
+    originalPrice: "INR 14,999",
+    rating: 4.9,
+    reviews: 1850,
+    accent: "from-indigo-500 via-purple-500 to-fuchsia-500",
+    Icon: BarChart3,
+    description:
+      "Decode price structures, momentum cycles, breakouts, breakdowns, and risk-reward planning for active equity trading.",
+    discount: "50% OFF",
+    lastUpdated: "April 2025",
+    videoLessons: 110,
+    resources: 45,
+    order: 5,
+    courseContent: [
+      {
+        section: "Momentum Trading Framework",
+        chapters: 5,
+        videos: 18,
+        previews: 2,
+        lectures: [
+          { title: "Price Action Foundations", duration: "14:20", isPreview: true },
+          { title: "Momentum Confirmation", duration: "18:05" },
+          { title: "Trade Management Rules", duration: "16:40" },
+        ],
+      },
+    ],
+    learningPoints: [
+      "Identify actionable breakout and breakdown zones",
+      "Use momentum confirmation without overloading indicators",
+      "Create planned entries, stops, and target zones",
+      "Review trades with a repeatable journal framework",
+    ],
+  },
+  {
+    id: 3,
+    title: "Advanced Intraday Techniques",
+    level: "Advanced",
+    instructor: "Manvendra Singh",
+    instructorTitle: "Senior Trading Instructor",
+    students: 12340,
+    price: "INR 12,999",
+    originalPrice: "INR 24,999",
+    rating: 4.7,
+    reviews: 2410,
+    accent: "from-sky-500 via-blue-500 to-cyan-500",
+    Icon: LineChart,
+    description:
+      "Learn high-probability intraday setups using candlesticks, trend structure, volume behavior, and execution discipline.",
+    discount: "50% OFF",
+    lastUpdated: "March 2025",
+    videoLessons: 95,
+    resources: 35,
+    order: 4,
+    courseContent: [
+      {
+        section: "Intraday Chart Reading",
+        chapters: 6,
+        videos: 20,
+        previews: 4,
+        lectures: [
+          { title: "Introduction to Candlesticks", duration: "11:45", isPreview: true },
+          { title: "Volume and Trend Context", duration: "15:30" },
+          { title: "Avoiding Overtrading", duration: "13:10" },
+        ],
+      },
+    ],
+    learningPoints: [
+      "Master candlestick patterns and market structure",
+      "Combine price action with volume analysis",
+      "Build high-probability day trading watchlists",
+      "Define risk before every intraday execution",
+    ],
+  },
+  {
+    id: 4,
+    title: "The Derivatives Pro",
+    level: "Professional",
+    instructor: "Manvendra Singh",
+    instructorTitle: "Senior Trading Instructor",
+    students: 6920,
+    price: "INR 14,999",
+    originalPrice: "INR 29,999",
+    rating: 4.8,
+    reviews: 1275,
+    accent: "from-violet-500 via-purple-500 to-pink-500",
+    Icon: Layers,
+    description:
+      "Understand futures and options through institutional tactics, option Greeks, strategy building, hedging, and risk controls.",
+    discount: "50% OFF",
+    lastUpdated: "February 2025",
+    videoLessons: 120,
+    resources: 52,
+    order: 3,
+    courseContent: [
+      {
+        section: "Options Strategy Engineering",
+        chapters: 7,
+        videos: 24,
+        previews: 3,
+        lectures: [
+          { title: "Call vs Put Options", duration: "14:20", isPreview: true },
+          { title: "Understanding Option Greeks", duration: "22:15" },
+          { title: "Building Spreads", duration: "19:50" },
+        ],
+      },
+    ],
+    learningPoints: [
+      "Understand Delta, Gamma, Theta, Vega, and IV behavior",
+      "Deploy bullish, bearish, and neutral option structures",
+      "Hedge open positions with derivatives",
+      "Manage defined-risk strategies like a professional",
+    ],
+  },
+  {
+    id: 5,
+    title: "Forex Formula",
+    level: "Intermediate",
+    instructor: "Manvendra Singh",
+    instructorTitle: "Senior Trading Instructor",
+    students: 4180,
+    price: "INR 8,999",
+    originalPrice: "INR 17,999",
+    rating: 4.6,
+    reviews: 890,
+    accent: "from-teal-500 via-emerald-500 to-lime-500",
+    Icon: WalletCards,
+    description:
+      "Step into currency markets with a structured understanding of global cycles, macro events, trend behavior, and capital protection.",
+    discount: "50% OFF",
+    lastUpdated: "January 2025",
+    videoLessons: 72,
+    resources: 28,
+    order: 2,
+    courseContent: [
+      {
+        section: "Currency Market Cycles",
+        chapters: 5,
+        videos: 16,
+        previews: 2,
+        lectures: [
+          { title: "Currency Pairs Explained", duration: "12:05", isPreview: true },
+          { title: "Macro Drivers and News Risk", duration: "18:25" },
+        ],
+      },
+    ],
+    learningPoints: [
+      "Read currency pairs, spreads, and global sessions",
+      "Understand how rates, inflation, and USD strength affect trends",
+      "Build rule-based forex trading plans",
+      "Control leverage and protect capital",
+    ],
+  },
+  {
+    id: 6,
+    title: "Mutual Fund Mastery",
+    level: "Beginner",
+    instructor: "Manvendra Singh",
+    instructorTitle: "Senior Trading Instructor",
+    students: 9970,
+    price: "INR 3,999",
+    originalPrice: "INR 7,999",
+    rating: 4.7,
+    reviews: 1440,
+    accent: "from-amber-500 via-orange-500 to-rose-500",
+    Icon: ShieldCheck,
+    description:
+      "Learn SIP planning, fund selection, compounding, diversification, and long-term wealth systems for disciplined investors.",
+    discount: "50% OFF",
+    lastUpdated: "December 2024",
+    videoLessons: 60,
+    resources: 18,
+    order: 1,
+    courseContent: [
+      {
+        section: "Mutual Fund Foundations",
+        chapters: 4,
+        videos: 14,
+        previews: 2,
+        lectures: [
+          { title: "How Mutual Funds Work", duration: "09:45", isPreview: true },
+          { title: "SIP and Compounding", duration: "13:15", isPreview: true },
+          { title: "Choosing Funds by Goal", duration: "16:00" },
+        ],
+      },
+    ],
+    learningPoints: [
+      "Plan SIPs around goals and time horizon",
+      "Compare funds using risk-return measures",
+      "Create diversified long-term portfolios",
+      "Understand tax basics and withdrawal planning",
+    ],
+  },
+];
+
+const ITEMS_PER_PAGE = 3;
 
 export default function CoursesPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<CourseLevel | "all">("all");
+  const [priceFilter, setPriceFilter] = useState<PriceFilter>("all");
+  const [sortBy, setSortBy] = useState<SortOption>("latest");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
-  const categories: Category[] = [
-    { name: "All Courses", count: 3, icon: BookOpen },
-    { name: "Basic", count: 1, icon: TrendingUp },
-    { name: "Medium", count: 1, icon: Layers },
-    { name: "Advanced", count: 1, icon: Palette },
-  ];
+  const categories = useMemo(() => {
+    const levels: Array<CourseLevel | "all"> = ["all", "Beginner", "Intermediate", "Advanced", "Professional"];
 
-  const instructors: string[] = [
-    "Manvendra Singh",
-  ];
+    return levels.map((level) => ({
+      level,
+      label: level === "all" ? "All Courses" : level,
+      count: level === "all" ? COURSES.length : COURSES.filter((course) => course.level === level).length,
+    }));
+  }, []);
 
-  const priceRanges: string[] = [
-    "All Courses",
-    "Free Courses",
-    "Premium Courses",
-    "Discounted",
-  ];
+  const filteredCourses = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
 
-  const courses: Course[] = [
-    {
-      id: 1,
-      title: "Basic Stock Market Course",
-      category: "Basic",
-      instructor: "Manvendra Singh",
-      instructorTitle: "Senior Trading Instructor",
-      students: 15420,
-      price: "₹4,999.00",
-      originalPrice: "₹9,999.00",
-      rating: 4.8,
-      reviews: 3245,
-      image: "bg-gradient-to-br from-emerald-300 via-teal-200 to-cyan-200",
-      icon: "📈",
-      description: "Start your journey in the stock market from scratch. Learn how the market works, how to buy/sell shares, understand basic fundamental analysis, and build a long-term portfolio.",
-      discount: "50% OFF",
-      lastUpdated: "05/2025",
-      videoLessons: 85,
-      quizzes: 12,
-      resources: 20,
-      onlineJudge: 0,
-      courseContent: [
-        {
-          section: "1. Stock Market Basics",
-          chapters: 4,
-          videos: 15,
-          previews: 3,
-          lectures: [
-            { title: "What is the Stock Market?", duration: "10:15", type: "video", isPreview: true },
-            { title: "How do Exchanges Work?", duration: "12:30", type: "video", isPreview: true },
-            { title: "Opening a Demat Account", duration: "08:45", type: "video", isPreview: true }
-          ]
-        }
-      ],
-      learningPoints: [
-        "Understand the core mechanics of the stock market",
-        "Learn how to evaluate companies and read financial statements",
-        "Differentiate between trading and investing",
-        "Build a diversified, risk-adjusted portfolio"
-      ]
-    },
-    {
-      id: 2,
-      title: "Medium Trading Strategies",
-      category: "Medium",
-      instructor: "Manvendra Singh",
-      instructorTitle: "Senior Trading Instructor",
-      students: 8250,
-      price: "₹7,499.00",
-      originalPrice: "₹14,999.00",
-      rating: 4.9,
-      reviews: 1850,
-      image: "bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-300",
-      icon: "⚡",
-      description: "Master complex options strategies like Iron Condors, Straddles, and Credit Spreads. Learn the nuances of option Greeks, implied volatility, and risk management.",
-      discount: "50% OFF",
-      lastUpdated: "04/2025",
-      videoLessons: 110,
-      quizzes: 20,
-      resources: 45,
-      onlineJudge: 0,
-      courseContent: [
-        {
-          section: "1. Options Fundamentals Refresher",
-          chapters: 5,
-          videos: 12,
-          previews: 2,
-          lectures: [
-            { title: "Call vs Put Options", duration: "14:20", type: "video", isPreview: true },
-            { title: "Understanding Option Pricing", duration: "18:05", type: "video", isPreview: false }
-          ]
-        }
-      ],
-      learningPoints: [
-        "Master the Option Greeks (Delta, Gamma, Theta, Vega)",
-        "Deploy advanced strategies in bullish, bearish, and neutral markets",
-        "Hedge your existing equity portfolio using derivatives",
-        "Manage risk and position sizing like a professional institution"
-      ]
-    },
-    {
-      id: 3,
-      title: "Advanced Intraday Techniques",
-      category: "Advanced",
-      instructor: "Manvendra Singh",
-      instructorTitle: "Senior Trading Instructor",
-      students: 12340,
-      price: "₹12,999.00",
-      originalPrice: "₹24,999.00",
-      rating: 4.7,
-      reviews: 2410,
-      image: "bg-gradient-to-br from-blue-300 via-cyan-200 to-teal-200",
-      icon: "🎯",
-      description: "Learn to read price charts, identify trends, and use technical indicators like RSI, MACD, and moving averages to time your market entries and exits.",
-      discount: "50% OFF",
-      lastUpdated: "03/2025",
-      videoLessons: 95,
-      quizzes: 15,
-      resources: 35,
-      onlineJudge: 0,
-      courseContent: [
-        {
-          section: "1. Charting Basics",
-          chapters: 6,
-          videos: 20,
-          previews: 4,
-          lectures: [
-            { title: "Introduction to Candlesticks", duration: "11:45", type: "video", isPreview: true }
-          ]
-        }
-      ],
-      learningPoints: [
-        "Master candlestick patterns and chart formations",
-        "Combine price action with volume analysis",
-        "Setup high-probability day trades and swing trades",
-        "Build customized trading setups and scanners"
-      ]
-    }
-  ];
+    return COURSES.filter((course) => {
+      const matchesCategory = selectedCategory === "all" || course.level === selectedCategory;
+      const matchesSearch =
+        !query ||
+        course.title.toLowerCase().includes(query) ||
+        course.description.toLowerCase().includes(query) ||
+        course.level.toLowerCase().includes(query);
+      const matchesPrice =
+        priceFilter === "all" ||
+        priceFilter === "premium" ||
+        (priceFilter === "discounted" && Boolean(course.discount));
 
-  const handleCourseClick = (course: Course): void => {
+      return matchesCategory && matchesSearch && matchesPrice;
+    }).sort((a, b) => {
+      if (sortBy === "popular") return b.students - a.students;
+      if (sortBy === "rating") return b.rating - a.rating;
+      return b.order - a.order;
+    });
+  }, [priceFilter, searchQuery, selectedCategory, sortBy]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredCourses.length / ITEMS_PER_PAGE));
+  const pageCourses = filteredCourses.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const resetToFirstPage = () => setCurrentPage(1);
+
+  const openCourse = (course: Course) => {
     setSelectedCourse(course);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleBackToCourses = (): void => {
-    setSelectedCourse(null);
+  const changePage = (page: number) => {
+    const nextPage = Math.min(Math.max(page, 1), totalPages);
+    setCurrentPage(nextPage);
   };
 
   if (selectedCourse) {
+    const CourseIcon = selectedCourse.Icon;
+
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 selection:bg-purple-500/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-          <button 
-            onClick={handleBackToCourses}
-            className="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 font-medium mb-8 transition-colors group"
+      <main className="min-h-screen bg-gradient-to-br from-white via-purple-50/60 to-slate-100">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <button
+            onClick={() => setSelectedCourse(null)}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-primary/40 hover:text-primary"
           >
-            <div className="p-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group-hover:border-purple-200 dark:group-hover:border-purple-900/50 shadow-sm transition-all group-hover:-translate-x-1">
-              <ArrowLeft className="w-4 h-4" />
-            </div>
-            Back to Courses
+            <ArrowLeft className="h-4 w-4" />
+            Back to courses
           </button>
 
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-10 lg:gap-16">
-            {/* Main Content */}
-            <div className="xl:col-span-2 space-y-10">
-              <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 leading-[1.15] tracking-tight">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+            <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-purple-100/60">
+              <div className={`bg-gradient-to-r ${selectedCourse.accent} p-6 text-white sm:p-8`}>
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wide">
+                  <CourseIcon className="h-4 w-4" />
+                  {selectedCourse.level}
+                </div>
+                <h1 className="max-w-3xl text-3xl font-extrabold leading-tight sm:text-5xl">
                   {selectedCourse.title}
                 </h1>
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed font-light">
+                <p className="mt-4 max-w-3xl text-sm leading-6 text-white/90 sm:text-base">
                   {selectedCourse.description}
                 </p>
               </div>
 
-              {/* Instructor & Stats */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10 pb-8 border-b border-slate-200 dark:border-slate-800">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full shadow-md border-2 border-white dark:border-slate-900 flex-shrink-0"></div>
-                  <div>
-                    <p className="font-bold text-slate-900 dark:text-white text-lg">{selectedCourse.instructor}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{selectedCourse.instructorTitle}</p>
-                  </div>
-                </div>
+              <div className="space-y-8 p-5 sm:p-8">
+                <div className="grid gap-3 sm:grid-cols-3">
+                  {[
+                    [Star, `${selectedCourse.rating}`, `${selectedCourse.reviews.toLocaleString()} reviews`],
+                    [Users, `${selectedCourse.students.toLocaleString()}+`, "learners"],
+                    [Clock, selectedCourse.lastUpdated, "last updated"],
+                  ].map(([Icon, value, label]) => {
+                    const StatIcon = Icon as ComponentType<{ className?: string }>;
 
-                <div className="h-10 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
-
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium">
-                  <div className="flex items-center gap-1.5">
-                    <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    <span className="text-slate-900 dark:text-white text-base">{selectedCourse.rating}</span>
-                    <span className="text-slate-500 dark:text-slate-400">({selectedCourse.reviews.toLocaleString()} reviews)</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
-                    <Users className="w-5 h-5 text-slate-400" />
-                    <span>{selectedCourse.students.toLocaleString()}+ Students</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
-                    <Clock className="w-5 h-5 text-slate-400" />
-                    <span>Updated {selectedCourse.lastUpdated}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* What will you learn */}
-              <div className="bg-white/60 dark:bg-slate-900/40 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-slate-200/50 dark:border-slate-800/50 shadow-sm">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 flex items-center gap-2">
-                  <BookOpen className="w-6 h-6 text-purple-500" />
-                  What you'll learn
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                  {selectedCourse.learningPoints.map((point: string, idx: number) => (
-                    <div key={idx} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                      <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-light">{point}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Course Content */}
-              <div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Course Content</h2>
-                <div className="space-y-4">
-                  {selectedCourse.courseContent.map((section: CourseSection, idx: number) => (
-                    <div key={idx} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm group">
-                      <div className="p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50 dark:bg-slate-900/50 group-hover:bg-slate-50 dark:group-hover:bg-slate-800/50 transition-colors">
-                        <div>
-                          <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-2">{section.section}</h3>
-                          <div className="flex flex-wrap items-center gap-2 text-xs font-medium">
-                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">{section.chapters} Chapters</span>
-                            <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">{section.videos} Videos</span>
-                            {section.quizzes && <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">{section.quizzes} Quizzes</span>}
-                            {section.resources && <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">{section.resources} Resources</span>}
-                            {section.questions && <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md border border-slate-200 dark:border-slate-700">{section.questions} Questions</span>}
-                          </div>
+                    return (
+                      <div key={label as string} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <StatIcon className="mb-3 h-5 w-5 text-primary" />
+                        <div className="text-lg font-extrabold text-slate-950">{value as string}</div>
+                        <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                          {label as string}
                         </div>
-                        <span className="text-xs font-bold px-3 py-1.5 bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400 rounded-full border border-green-200 dark:border-green-500/20 whitespace-nowrap">
-                          {section.previews} Free Previews
-                        </span>
                       </div>
+                    );
+                  })}
+                </div>
 
-                      {/* Lectures */}
-                      {section.lectures.length > 0 && (
-                        <div className="border-t border-slate-200 dark:border-slate-800">
-                          {section.lectures.map((lecture: Lecture, lectureIdx: number) => (
-                            <div key={lectureIdx} className="p-4 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800/50 last:border-0 transition-colors">
-                              <div className="flex items-center gap-3">
-                                {lecture.type === 'video' ? (
-                                  lecture.isPreview ? <Play className="w-4 h-4 text-purple-500" fill="currentColor" /> : <Lock className="w-4 h-4 text-slate-400" />
+                <section>
+                  <h2 className="mb-4 flex items-center gap-2 text-xl font-extrabold text-slate-950">
+                    <BookOpen className="h-5 w-5 text-primary" />
+                    What you'll learn
+                  </h2>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {selectedCourse.learningPoints.map((point) => (
+                      <div key={point} className="flex items-start gap-3 rounded-xl bg-purple-50/70 p-3">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
+                        <p className="text-sm leading-6 text-slate-700">{point}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                <section>
+                  <h2 className="mb-4 text-xl font-extrabold text-slate-950">Course Content</h2>
+                  <div className="space-y-4">
+                    {selectedCourse.courseContent.map((section) => (
+                      <div key={section.section} className="overflow-hidden rounded-xl border border-slate-200">
+                        <div className="flex flex-col gap-3 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <h3 className="font-bold text-slate-950">{section.section}</h3>
+                            <p className="mt-1 text-xs font-medium text-slate-500">
+                              {section.chapters} chapters - {section.videos} videos
+                            </p>
+                          </div>
+                          <span className="w-fit rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
+                            {section.previews} previews
+                          </span>
+                        </div>
+
+                        <div className="divide-y divide-slate-100 bg-white">
+                          {section.lectures.map((lecture) => (
+                            <div key={lecture.title} className="flex items-center justify-between gap-3 p-4">
+                              <div className="flex min-w-0 items-center gap-3">
+                                {lecture.isPreview ? (
+                                  <Play className="h-4 w-4 shrink-0 text-primary" fill="currentColor" />
                                 ) : (
-                                  <Layers className="w-4 h-4 text-indigo-500" />
+                                  <Lock className="h-4 w-4 shrink-0 text-slate-400" />
                                 )}
-                                <span className={`text-sm font-medium ${lecture.isPreview ? 'text-slate-900 dark:text-white cursor-pointer hover:text-purple-600 dark:hover:text-purple-400' : 'text-slate-600 dark:text-slate-400'}`}>
+                                <span className="truncate text-sm font-semibold text-slate-700">
                                   {lecture.title}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-3">
-                                {lecture.type === 'section' ? (
-                                  <>
-                                    <span className="text-xs font-medium text-slate-500">{lecture.videos} Videos</span>
-                                    {lecture.previews ? <span className="text-xs font-bold text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-500/10 px-2 py-0.5 rounded border border-green-200 dark:border-green-500/20">{lecture.previews} Previews</span> : null}
-                                  </>
-                                ) : (
-                                  <>
-                                    {lecture.isPreview && (
-                                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-purple-100 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 rounded border border-purple-200 dark:border-purple-500/20 hidden sm:inline-block">Preview</span>
-                                    )}
-                                    <span className="text-xs font-medium text-slate-500 dark:text-slate-400 tabular-nums">{lecture.duration}</span>
-                                  </>
-                                )}
-                              </div>
+                              <span className="shrink-0 text-xs font-medium text-slate-500">{lecture.duration}</span>
                             </div>
                           ))}
                         </div>
-                      )}
-                    </div>
-                  ))}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
+            </section>
+
+            <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-5 shadow-xl shadow-purple-100/60 lg:sticky lg:top-24">
+              <div className={`mb-5 flex h-40 items-center justify-center rounded-xl bg-gradient-to-br ${selectedCourse.accent}`}>
+                <CourseIcon className="h-16 w-16 text-white" />
+              </div>
+              <div className="mb-5">
+                <div className="text-3xl font-extrabold text-slate-950">{selectedCourse.price}</div>
+                <div className="mt-1 text-sm font-semibold text-slate-400 line-through">
+                  {selectedCourse.originalPrice}
+                </div>
+                <div className="mt-3 inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
+                  {selectedCourse.discount}
                 </div>
               </div>
-            </div>
 
-            {/* Sidebar */}
-            <div className="xl:col-span-1">
-              <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-2xl shadow-slate-200/20 dark:shadow-none sticky top-28">
-                {/* Course Image Header */}
-                <div className={`${selectedCourse.image} rounded-2xl h-52 mb-8 flex items-center justify-center text-7xl relative overflow-hidden shadow-inner`}>
-                  <div className="absolute inset-0 bg-black/5 dark:bg-black/20" />
-                  <span className="relative z-10 drop-shadow-md">{selectedCourse.icon}</span>
-                  {selectedCourse.discount && (
-                    <div className="absolute top-4 left-4 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-lg border border-slate-100 dark:border-slate-700/50">
-                      🎟️ {selectedCourse.discount}
-                    </div>
-                  )}
-                </div>
+              <div className="space-y-3">
+                <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 font-bold text-white shadow-lg shadow-primary/20 transition active:scale-[0.98]">
+                  Enroll Now
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+                <button className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-bold text-slate-800 transition hover:bg-white active:scale-[0.98]">
+                  <MessageCircle className="h-4 w-4" />
+                  Book Free Consultation
+                </button>
+              </div>
 
-                {/* Price */}
-                <div className="mb-8">
-                  <div className="flex flex-col mb-1">
-                    <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{selectedCourse.price}</span>
-                    <span className="text-lg text-slate-400 dark:text-slate-500 line-through font-medium">{selectedCourse.originalPrice}</span>
-                  </div>
-                  <p className="text-sm font-medium text-green-600 dark:text-green-400 mt-2 flex items-center gap-1.5">
-                    <Clock className="w-4 h-4" /> Limited time offer!
-                  </p>
-                </div>
-
-                {/* CTA Buttons */}
-                <div className="space-y-3 mb-8">
-                  <button className="w-full bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-900 py-3.5 rounded-xl font-bold shadow-lg shadow-slate-900/10 dark:shadow-white/10 transition-all hover:-translate-y-0.5 active:translate-y-0 text-base">
-                    Enroll Now
-                  </button>
-                  <button className="w-full bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:border-slate-300 dark:hover:border-slate-600 py-3.5 rounded-xl font-bold transition-all text-base flex justify-center items-center gap-2">
-                    Start Free Trial
-                  </button>
-                </div>
-
-                {/* Course Includes */}
-                <div className="mb-0">
-                  <h3 className="font-bold text-slate-900 dark:text-white mb-4 text-base">This course includes:</h3>
-                  <div className="space-y-3.5 text-sm">
-                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                        <Video className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-                      </div>
-                      <span className="font-medium">{selectedCourse.videoLessons}+ Video Lessons</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                        <FileText className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-                      </div>
-                      <span className="font-medium">{selectedCourse.quizzes}+ Practice Quizzes</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                        <Download className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-                      </div>
-                      <span className="font-medium">{selectedCourse.resources}+ Downloadable Resources</span>
-                    </div>
-                    {selectedCourse.onlineJudge > 0 && (
-                      <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                        <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                          <Code className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-                        </div>
-                        <span className="font-medium">{selectedCourse.onlineJudge}+ Coding Exercises</span>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-3 text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0">
-                        <Award className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-                      </div>
-                      <span className="font-medium">Certificate of Completion</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Consultation */}
-                <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium">Need help choosing a course?</p>
-                  <button className="w-full flex items-center justify-center gap-2 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white py-3 rounded-xl text-sm font-semibold transition-colors shadow-sm">
-                    <MessageCircle className="w-4 h-4" />
-                    Book Free Consultation
-                  </button>
+              <div className="mt-6 border-t border-slate-200 pt-5">
+                <h3 className="mb-3 text-sm font-extrabold text-slate-950">This course includes</h3>
+                <div className="space-y-3 text-sm text-slate-600">
+                  <CourseInclude icon={Video} text={`${selectedCourse.videoLessons}+ video lessons`} />
+                  <CourseInclude icon={FileText} text="Practice worksheets" />
+                  <CourseInclude icon={Download} text={`${selectedCourse.resources}+ resources`} />
+                  <CourseInclude icon={Award} text="Certificate of completion" />
                 </div>
               </div>
-            </div>
+            </aside>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 selection:bg-purple-500/30">
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-24 md:pt-32 md:pb-36 overflow-hidden flex items-center justify-center border-b border-slate-200/50 dark:border-slate-800/50">
-        {/* Ambient Glows */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-purple-500/10 dark:bg-purple-500/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-500/10 dark:bg-indigo-500/5 blur-[100px] rounded-full pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-md mb-8 shadow-sm">
-             <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-             <span className="text-sm font-semibold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
-               Explore
-             </span>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.1]">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">Courses</span> Catalog
+    <main className="min-h-screen bg-gradient-to-br from-white via-purple-50/60 to-slate-100">
+      <section className="relative overflow-hidden border-b border-purple-100 px-4 py-12 sm:px-6 lg:px-8">
+        <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
+        <div className="relative mx-auto max-w-5xl text-center">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
+            Trading education built for real market practice
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed font-light max-w-2xl mx-auto">
-            Discover our premium programs and unlock your potential with expert-led financial education.
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+            Choose a focused program, compare learning paths, and move from market basics to advanced execution with a consistent mentoring framework.
           </p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Search */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Search</h3>
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+          <aside className="space-y-4">
+            <FilterPanel title="Search">
               <div className="relative">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <input
-                  type="text"
-                  placeholder="Search courses..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-shadow"
+                  onChange={(event) => {
+                    setSearchQuery(event.target.value);
+                    resetToFirstPage();
+                  }}
+                  placeholder="Search courses"
+                  className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-3 text-sm outline-none transition focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/15"
                 />
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               </div>
-            </div>
+            </FilterPanel>
 
-            {/* Course Categories */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Categories</h3>
-              <div className="space-y-1">
-                {categories.map((cat, idx) => (
+            <FilterPanel title="Level">
+              <div className="space-y-2">
+                {categories.map((category) => (
                   <button
-                    key={idx}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
+                    key={category.level}
+                    onClick={() => {
+                      setSelectedCategory(category.level);
+                      resetToFirstPage();
+                    }}
+                    className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+                      selectedCategory === category.level
+                        ? "bg-primary text-white shadow-md shadow-primary/20"
+                        : "bg-slate-50 text-slate-600 hover:bg-purple-50 hover:text-primary"
+                    }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <cat.icon className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />
-                      <span className="font-medium text-sm">{cat.name}</span>
-                    </div>
-                    <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">
-                      {cat.count}
-                    </span>
+                    <span>{category.label}</span>
+                    <span className="rounded-full bg-white/20 px-2 py-0.5 text-xs">{category.count}</span>
                   </button>
                 ))}
               </div>
-            </div>
+            </FilterPanel>
 
-            {/* Instructors */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Instructors</h3>
-              <div className="space-y-1">
-                {instructors.map((instructor, idx) => (
+            <FilterPanel title="Pricing">
+              <div className="grid grid-cols-1 gap-2">
+                {[
+                  ["all", "All Courses"],
+                  ["premium", "Premium"],
+                  ["discounted", "Discounted"],
+                ].map(([value, label]) => (
                   <button
-                    key={idx}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
+                    key={value}
+                    onClick={() => {
+                      setPriceFilter(value as PriceFilter);
+                      resetToFirstPage();
+                    }}
+                    className={`rounded-xl px-3 py-2.5 text-left text-sm font-semibold transition ${
+                      priceFilter === value
+                        ? "bg-primary text-white shadow-md shadow-primary/20"
+                        : "bg-slate-50 text-slate-600 hover:bg-purple-50 hover:text-primary"
+                    }`}
                   >
-                    <span className="font-medium text-sm">{instructor}</span>
-                    <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">3</span>
+                    {label}
                   </button>
                 ))}
               </div>
-            </div>
+            </FilterPanel>
+          </aside>
 
-            {/* Price With Courses */}
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-800/50 rounded-3xl p-6 shadow-xl shadow-slate-200/20 dark:shadow-none">
-              <h3 className="font-semibold text-slate-900 dark:text-white mb-4 text-lg">Pricing Options</h3>
-              <div className="space-y-1">
-                {priceRanges.map((range, idx) => (
-                  <button
-                    key={idx}
-                    className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
-                  >
-                    <span className="font-medium text-sm">{range}</span>
-                    <span className="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md text-slate-500 dark:text-slate-400">3</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Courses Grid */}
-          <div className="lg:col-span-3">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md p-4 rounded-2xl border border-slate-200/50 dark:border-slate-800/50">
-              <p className="text-slate-600 dark:text-slate-400 font-medium">
-                We found <span className="font-bold text-slate-900 dark:text-white">3 courses</span> for you
+          <section>
+            <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm font-semibold text-slate-600">
+                Showing <span className="text-slate-950">{pageCourses.length}</span> of{" "}
+                <span className="text-slate-950">{filteredCourses.length}</span> courses
               </p>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 hidden sm:flex">
-                  <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">Sort By:</span>
-                  <select className="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm outline-none focus:ring-2 focus:ring-purple-500/50 text-slate-700 dark:text-slate-300 font-medium cursor-pointer">
-                    <option>Latest</option>
-                    <option>Popular</option>
-                    <option>Rating</option>
-                  </select>
-                </div>
-                <div className="flex gap-1 bg-white dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
-                  <button
-                    onClick={() => setViewMode("grid")}
-                    className={`p-2 rounded-lg transition-colors ${viewMode === "grid" ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
-                  >
-                    <Grid className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode("list")}
-                    className={`p-2 rounded-lg transition-colors ${viewMode === "list" ? "bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"}`}
-                  >
-                    <List className="w-4 h-4" />
-                  </button>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <select
+                  value={sortBy}
+                  onChange={(event) => {
+                    setSortBy(event.target.value as SortOption);
+                    resetToFirstPage();
+                  }}
+                  className="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm font-semibold text-slate-700 outline-none focus:border-primary focus:ring-2 focus:ring-primary/15"
+                >
+                  <option value="latest">Latest</option>
+                  <option value="popular">Popular</option>
+                  <option value="rating">Rating</option>
+                </select>
+
+                <div className="flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+                  <ViewButton active={viewMode === "grid"} onClick={() => setViewMode("grid")} icon={Grid} label="Grid view" />
+                  <ViewButton active={viewMode === "list"} onClick={() => setViewMode("list")} icon={List} label="List view" />
                 </div>
               </div>
             </div>
 
-            {/* Courses */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {courses.map((course) => (
-                <div 
-                  key={course.id} 
-                  onClick={() => handleCourseClick(course)}
-                  className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-3xl shadow-lg shadow-slate-200/20 dark:shadow-none border border-slate-200/50 dark:border-slate-800/50 hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 overflow-hidden group cursor-pointer flex flex-col"
-                >
-                  {/* Course Image */}
-                  <div className={`${course.image} h-48 flex items-center justify-center text-6xl relative overflow-hidden`}>
-                    <span className="relative z-10 group-hover:scale-110 transition-transform duration-500">{course.icon}</span>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
+            {pageCourses.length > 0 ? (
+              <div className={viewMode === "grid" ? "grid gap-5 md:grid-cols-2 xl:grid-cols-3" : "space-y-4"}>
+                {pageCourses.map((course) =>
+                  viewMode === "grid" ? (
+                    <CourseCard key={course.id} course={course} onClick={() => openCourse(course)} />
+                  ) : (
+                    <CourseRow key={course.id} course={course} onClick={() => openCourse(course)} />
+                  )
+                )}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center">
+                <Search className="mx-auto mb-3 h-8 w-8 text-slate-400" />
+                <h3 className="text-lg font-extrabold text-slate-950">No courses found</h3>
+                <p className="mt-2 text-sm text-slate-500">Try a different search term or level filter.</p>
+              </div>
+            )}
 
-                  {/* Course Info */}
-                  <div className="p-6 flex flex-col flex-1">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="px-3 py-1 bg-purple-100/50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 text-xs rounded-full font-bold uppercase tracking-wider">
-                        {course.category}
-                      </span>
-                      <span className="text-slate-900 dark:text-white font-extrabold text-lg">{course.price}</span>
-                    </div>
-
-                    <h3 className="font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 text-lg leading-snug group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                      {course.title}
-                    </h3>
-
-                    <div className="flex items-center gap-3 mb-5 mt-auto">
-                      <div className="w-10 h-10 bg-slate-200 dark:bg-slate-800 rounded-full flex-shrink-0 border-2 border-white dark:border-slate-900 shadow-sm"></div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-200 truncate">{course.instructor}</p>
-                        <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                          <Users className="w-3.5 h-3.5" />
-                          <span>{course.students.toLocaleString()} Students</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 relative">
-                      <div className="flex items-center gap-1.5">
-                        <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-3.5 h-3.5 ${i < Math.floor(course.rating) ? "fill-yellow-400 text-yellow-400" : "fill-slate-200 text-slate-200 dark:fill-slate-700 dark:text-slate-700"}`}
-                          />
-                        ))}
-                        </div>
-                        <span className="text-xs font-bold text-slate-700 dark:text-slate-300 ml-1">{course.rating}</span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400 ml-1">({course.reviews})</span>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                        <ArrowLeft className="w-4 h-4 text-slate-400 dark:text-slate-500 rotate-180" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Pagination */}
-            <div className="flex justify-center mt-12 gap-2">
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+              <PaginationButton disabled={currentPage === 1} onClick={() => changePage(currentPage - 1)}>
                 Previous
-              </button>
-              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">1</button>
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">2</button>
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">3</button>
-              <button className="px-4 py-2 border border-slate-300 rounded-lg text-sm hover:bg-purple-50 hover:border-purple-600 hover:text-purple-600">
+              </PaginationButton>
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => changePage(page)}
+                  className={`h-10 min-w-10 rounded-xl px-3 text-sm font-bold transition ${
+                    currentPage === page
+                      ? "bg-primary text-white shadow-md shadow-primary/20"
+                      : "border border-slate-200 bg-white text-slate-600 hover:border-primary/40 hover:text-primary"
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+              <PaginationButton disabled={currentPage === totalPages} onClick={() => changePage(currentPage + 1)}>
                 Next
-              </button>
+              </PaginationButton>
             </div>
-          </div>
+          </section>
         </div>
       </div>
+    </main>
+  );
+}
+
+function FilterPanel({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h2 className="mb-3 text-sm font-extrabold uppercase tracking-wide text-slate-900">{title}</h2>
+      {children}
     </div>
-  
+  );
+}
+
+function ViewButton({
+  active,
+  icon: Icon,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  icon: ComponentType<{ className?: string }>;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      aria-label={label}
+      onClick={onClick}
+      className={`rounded-lg p-2 transition ${
+        active ? "bg-white text-primary shadow-sm" : "text-slate-400 hover:text-slate-700"
+      }`}
+    >
+      <Icon className="h-4 w-4" />
+    </button>
+  );
+}
+
+function CourseCard({ course, onClick }: { course: Course; onClick: () => void }) {
+  const Icon = course.Icon;
+
+  return (
+    <button
+      onClick={onClick}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-100"
+    >
+      <div className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${course.accent}`}>
+        <Icon className="h-16 w-16 text-white transition group-hover:scale-110" />
+        <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-extrabold text-slate-900">
+          {course.discount}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-5">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <span className="rounded-full bg-purple-50 px-3 py-1 text-xs font-bold text-primary">
+            {course.level}
+          </span>
+          <span className="text-sm font-extrabold text-slate-950">{course.price}</span>
+        </div>
+        <h3 className="text-lg font-extrabold leading-snug text-slate-950 group-hover:text-primary">
+          {course.title}
+        </h3>
+        <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">{course.description}</p>
+        <CourseMeta course={course} />
+      </div>
+    </button>
+  );
+}
+
+function CourseRow({ course, onClick }: { course: Course; onClick: () => void }) {
+  const Icon = course.Icon;
+
+  return (
+    <button
+      onClick={onClick}
+      className="group grid w-full gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-primary/30 hover:shadow-lg hover:shadow-purple-100 sm:grid-cols-[160px_minmax(0,1fr)]"
+    >
+      <div className={`flex h-36 items-center justify-center rounded-xl bg-gradient-to-br ${course.accent}`}>
+        <Icon className="h-14 w-14 text-white transition group-hover:scale-110" />
+      </div>
+      <div>
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-purple-50 px-3 py-1 text-xs font-bold text-primary">
+            {course.level}
+          </span>
+          <span className="rounded-full bg-green-50 px-3 py-1 text-xs font-bold text-green-700">
+            {course.discount}
+          </span>
+        </div>
+        <h3 className="text-xl font-extrabold text-slate-950 group-hover:text-primary">{course.title}</h3>
+        <p className="mt-2 text-sm leading-6 text-slate-600">{course.description}</p>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <CourseMeta course={course} compact />
+          <div className="font-extrabold text-slate-950">{course.price}</div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+function CourseMeta({ course, compact = false }: { course: Course; compact?: boolean }) {
+  return (
+    <div className={`${compact ? "" : "mt-auto pt-5"} flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500`}>
+      <span className="inline-flex items-center gap-1">
+        <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+        {course.rating} ({course.reviews.toLocaleString()})
+      </span>
+      <span className="inline-flex items-center gap-1">
+        <Users className="h-3.5 w-3.5" />
+        {course.students.toLocaleString()}
+      </span>
+      <span className="inline-flex items-center gap-1">
+        <Video className="h-3.5 w-3.5" />
+        {course.videoLessons} lessons
+      </span>
+    </div>
+  );
+}
+
+function CourseInclude({
+  icon: Icon,
+  text,
+}: {
+  icon: ComponentType<{ className?: string }>;
+  text: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-purple-50 text-primary">
+        <Icon className="h-4 w-4" />
+      </span>
+      <span className="font-semibold">{text}</span>
+    </div>
+  );
+}
+
+function PaginationButton({
+  children,
+  disabled,
+  onClick,
+}: {
+  children: ReactNode;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      className="h-10 rounded-xl border border-slate-200 bg-white px-4 text-sm font-bold text-slate-600 transition hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-slate-200 disabled:hover:text-slate-600"
+    >
+      {children}
+    </button>
   );
 }
