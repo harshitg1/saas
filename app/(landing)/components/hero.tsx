@@ -172,7 +172,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative lg:hidden overflow-hidden rounded-2xl bg-slate-950 text-white shadow-2xl">
+      <section className="relative lg:hidden overflow-hidden bg-slate-950 text-white shadow-2xl sm:rounded-2xl">
         <div className="absolute inset-0">
           <Image
             src={HERO_CONTENT.backgroundImage.src}
@@ -197,11 +197,11 @@ export default function Hero() {
               {HERO_CONTENT.badge.text}
             </div>
 
-            <h1 className="mt-4 text-[2.35rem] font-extrabold leading-[1.03] tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-4 text-[2rem] font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl">
               Learn Stock Markets from Kanpur's Practitioners
             </h1>
 
-            <p className="mt-4 max-w-xl text-base leading-7 text-white/78">
+            <p className="mt-4 max-w-xl text-sm leading-6 text-white/78 sm:text-base sm:leading-7">
               Structured stock market training, live market analysis, and
               personal mentorship for beginners and aspiring traders.
             </p>
@@ -214,7 +214,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <button className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 font-bold text-white shadow-lg shadow-black/20 transition active:scale-[0.98]">
                 {getIcon(HERO_CONTENT.cta.primary.icon, "h-5 w-5")}
                 {HERO_CONTENT.cta.primary.text}
@@ -227,13 +227,13 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="mt-6 grid grid-cols-3 gap-2 rounded-2xl border border-white/60 bg-white/85 p-2 shadow-xl shadow-black/20 backdrop-blur-md">
+            <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl border border-white/60 bg-white/85 p-2 shadow-xl shadow-black/20 backdrop-blur-md">
               {[
                 { value: "1,485+", label: "Learners" },
                 { value: "5+", label: "Years" },
                 { value: "96%", label: "Satisfaction" },
               ].map((item) => (
-                <div key={item.label} className="rounded-xl bg-slate-50 px-2 py-3 text-center shadow-sm">
+                <div key={item.label} className="rounded-xl bg-slate-50 px-2 py-2.5 text-center shadow-sm">
                   <div className="text-base font-extrabold leading-none text-slate-950">
                     {item.value}
                   </div>
@@ -245,7 +245,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="mt-7 rounded-2xl border border-white/12 bg-white/[0.08] p-4 backdrop-blur-xl">
+          <div className="mt-6 rounded-2xl border border-white/12 bg-white/[0.08] p-4 backdrop-blur-xl">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="mb-2 inline-flex rounded-full bg-green-400/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-green-200">

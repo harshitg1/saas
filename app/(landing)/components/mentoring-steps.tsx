@@ -60,7 +60,7 @@ export default function MentoringComponent() {
   ];
 
   return (
-    <section className="relative px-4 py-14 sm:px-6 sm:py-16 lg:p-20 bg-gradient-to-br from-slate-100 via-white to-purple-50 overflow-hidden">
+    <section className="relative px-4 py-12 sm:px-6 sm:py-16 lg:p-20 bg-gradient-to-br from-slate-100 via-white to-purple-50 overflow-hidden">
       {/* Background Graphics */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Abstract shapes */}
@@ -113,9 +113,9 @@ export default function MentoringComponent() {
         <div className="absolute left-1/2 top-[10%] bottom-[10%] hidden lg:block w-px bg-gradient-to-b from-transparent via-theme-primary/20 to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-0 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section with Left-Right Layout */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-14 gap-8">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-9 sm:mb-14 gap-6 lg:gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -123,13 +123,13 @@ export default function MentoringComponent() {
             transition={{ duration: 0.5 }}
             className="lg:w-1/2"
           >
-            <div className="inline-block px-4 rounded-full bg-theme-primary/20 backdrop-blur-sm mb-2">
-              <span className="text-sm font-semibold tracking-wide text-theme-primary uppercase">
+            <div className="inline-block px-3 py-1 rounded-full bg-theme-primary/20 backdrop-blur-sm mb-2">
+              <span className="text-xs sm:text-sm font-semibold tracking-wide text-theme-primary uppercase">
                 Personalized Mentorship
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 leading-tight">
               How We Deliver
               <span className="block text-theme-primary ">Outstanding</span>
               <span className="block">Mentoring Results</span>
@@ -143,7 +143,7 @@ export default function MentoringComponent() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:w-2/5"
           >
-            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 leading-relaxed">
               Creating cutting-edge trading education that combines innovation
               and functionality to meet the evolving needs of tomorrow's
               financial markets and traders.
@@ -157,7 +157,7 @@ export default function MentoringComponent() {
               ].map((item, i) => (
                 <div key={i} className="flex items-start space-x-2">
                   <CheckCircle className="w-5 h-5 text-theme-primary shrink-0 mt-0.5" />
-                  <span className="text-slate-700">{item}</span>
+                  <span className="text-sm sm:text-base text-slate-700">{item}</span>
                 </div>
               ))}
             </div>
@@ -169,7 +169,7 @@ export default function MentoringComponent() {
           {/* Decorative graphic element */}
           <div className="absolute -z-10 w-64 h-64 rounded-full bg-gradient-to-br from-theme-primary/5 to-purple-100/50 blur-2xl left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
             {/* Connecting line through all cards */}
             <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-theme-primary/40 via-theme-primary/60 to-theme-primary/40 hidden lg:block"></div>
 
@@ -182,7 +182,7 @@ export default function MentoringComponent() {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 onMouseEnter={() => setHoveredStep(step.id)}
                 onMouseLeave={() => setHoveredStep(null)}
-                className={`relative bg-white rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300 z-10 
+                className={`relative bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-8 transition-all duration-300 z-10 
                   ${
                     hoveredStep === step.id
                       ? "transform -translate-y-3"
@@ -207,11 +207,11 @@ export default function MentoringComponent() {
                   {step.icon}
                 </div>
 
-                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-4">
+                <h3 className="text-lg md:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">
                   {step.title}
                 </h3>
 
-                <p className="text-slate-600 mb-6">{step.description}</p>
+                <p className="text-sm sm:text-base text-slate-600 mb-4 sm:mb-6 leading-relaxed">{step.description}</p>
 
                 <div
                   className={`inline-flex items-center mt-2 text-sm font-medium transition-colors duration-300 group
@@ -242,16 +242,16 @@ export default function MentoringComponent() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-16 sm:mt-24 bg-white rounded-2xl p-5 sm:p-8 shadow-xl overflow-hidden relative"
+          className="mt-10 sm:mt-24 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 shadow-xl overflow-hidden relative"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-purple-50 opacity-70"></div>
 
-          <div className="relative flex flex-col lg:flex-row items-center gap-8">
+          <div className="relative flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
             <div className="lg:w-1/2">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+              <h3 className="text-xl md:text-3xl font-bold text-slate-900 mb-3 sm:mb-4">
                 Ready to elevate your trading skills?
               </h3>
-              <p className="text-slate-600 mb-6">
+              <p className="text-sm sm:text-base text-slate-600 mb-5 sm:mb-6 leading-relaxed">
                 Join over 4,000+ traders who have transformed their approach to
                 markets through our personalized mentoring program. Experience
                 the difference expert guidance makes.

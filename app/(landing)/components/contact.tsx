@@ -37,7 +37,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="bg-white py-10 relative overflow-hidden">
+    <section className="bg-white py-12 sm:py-10 relative overflow-hidden">
       <div className="max-w-7xl pb-4 mx-auto px-4 sm:px-6 relative z-20">
         {/* Header */}
         <motion.div
@@ -45,9 +45,9 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
+          <h2 className="text-2xl md:text-4xl font-bold text-slate-800 mb-3">
             Connect with <span className="text-theme-primary">our team</span>
           </h2>
           <p className="text-slate-600 text-sm md:text-base max-w-xl mx-auto">

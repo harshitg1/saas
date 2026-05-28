@@ -5,15 +5,23 @@ import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.legacy85mentoringpvtltd.com"),
-  title: "Legacy Trading App",
+  title: {
+    default: "Legacy85 Mentoring Pvt Ltd",
+    template: "%s | Legacy85 Mentoring Pvt Ltd",
+  },
   description:
-    "Legacy85 Mentoring offers stock market education, live market training, and personal trading mentorship in Kanpur.",
+    "Stock market education, live market training, and personal trading mentorship in Kanpur by Legacy85 Mentoring Pvt Ltd.",
+  applicationName: "Legacy85 Mentoring",
+  icons: {
+    icon: "/LogoL1.png",
+    apple: "/LogoL1.png",
+  },
   openGraph: {
-    title: "Legacy Trading App",
+    title: "Legacy85 Mentoring Pvt Ltd",
     description:
-      "Stock market education, live market training, and personal trading mentorship by Legacy85 Mentoring.",
+      "Stock market education, live market training, and personal trading mentorship in Kanpur by Legacy85 Mentoring Pvt Ltd.",
     url: "https://www.legacy85mentoringpvtltd.com",
-    siteName: "Legacy85 Mentoring",
+    siteName: "Legacy85 Mentoring Pvt Ltd",
     images: [
       {
         url: "/LogoL1.png",
@@ -26,9 +34,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Legacy Trading App",
+    title: "Legacy85 Mentoring Pvt Ltd",
     description:
-      "Stock market education, live market training, and personal trading mentorship by Legacy85 Mentoring.",
+      "Stock market education, live market training, and personal trading mentorship in Kanpur by Legacy85 Mentoring Pvt Ltd.",
     images: ["/LogoL1.png"],
   },
 };

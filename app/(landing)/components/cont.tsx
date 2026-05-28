@@ -152,24 +152,24 @@ export default function ContactSupport() {
   return (
     <div className="w-full border border-gray-200 bg-gradient-to-br from-purple-50 via-white to-teal-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
       {/* Main Content */}
-      <main className="py-10 sm:pb-16">
+      <main className="py-7 sm:py-10 sm:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-16 items-start">
             {/* Left Section */}
-            <div className="space-y-8 sm:space-y-10">
+            <div className="space-y-6 sm:space-y-10">
               {/* Header */}
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold tracking-wider text-[10px] uppercase">
                   Contact Support
                 </div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
                   Let's grow your{" "}
                   <span className="text-purple-600 dark:text-purple-400">
                     portfolio
                   </span>{" "}
                   together.
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-md">
+                <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-lg max-w-md leading-relaxed">
                   Connect with India's leading trading academy. Our friendly
                   experts are here to help you navigate the markets.
                 </p>
@@ -187,11 +187,11 @@ export default function ContactSupport() {
 
                   <form
                     onSubmit={handleSubmit}
-                    className="space-y-5 sm:space-y-6"
+                    className="space-y-4 sm:space-y-6"
                     role="form"
                   >
                     {/* Name and Email Row */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                       <div className="flex flex-col gap-2">
                         <Label
                           htmlFor="fullName"
@@ -205,7 +205,7 @@ export default function ContactSupport() {
                           placeholder="e.g. Rahul Sharma"
                           value={formData.fullName}
                           onChange={handleInputChange}
-                          className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
+                          className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-12 sm:h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
                         />
                         {errors.fullName && (
                           <p className="text-xs text-red-500 font-medium">
@@ -228,7 +228,7 @@ export default function ContactSupport() {
                           placeholder="rahul@domain.com"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
+                          className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-12 sm:h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
                         />
                         {errors.email && (
                           <p className="text-xs text-red-500 font-medium">
@@ -252,7 +252,7 @@ export default function ContactSupport() {
                         placeholder="Advanced Options Trading"
                         value={formData.topic}
                         onChange={handleInputChange}
-                        className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
+                        className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-12 sm:h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
                       />
                       {errors.topic && (
                         <p className="text-xs text-red-500 font-medium">
@@ -300,7 +300,7 @@ export default function ContactSupport() {
             </div>
 
             {/* Right Section - Map */}
-            <div className="min-h-[520px] lg:h-full flex flex-col gap-6">
+            <div className="min-h-[390px] sm:min-h-[520px] lg:h-full flex flex-col gap-5 sm:gap-6">
               {/* Header */}
               <div className="flex items-center justify-between px-2">
                 <div className="flex flex-col">
@@ -318,7 +318,7 @@ export default function ContactSupport() {
               </div>
 
               {/* Map Container */}
-              <Card className="relative min-h-[420px] flex-1 rounded-2xl sm:rounded-[2rem] overflow-hidden border-purple-200 dark:border-white/10 shadow-xl bg-purple-100 dark:bg-slate-800">
+              <Card className="relative min-h-[320px] sm:min-h-[420px] flex-1 rounded-2xl sm:rounded-[2rem] overflow-hidden border-purple-200 dark:border-white/10 shadow-xl bg-purple-100 dark:bg-slate-800">
                 <div className="absolute inset-0 z-0">
                   <img
                     alt="Modern light map of Mumbai"

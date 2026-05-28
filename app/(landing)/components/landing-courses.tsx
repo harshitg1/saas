@@ -92,13 +92,13 @@ export default function PremiumCourses() {
   ];
 
   return (
-    <section className="w-full py-14 sm:py-20 px-4 sm:px-8 lg:px-16">
+    <section className="w-full py-12 sm:py-20 px-4 sm:px-8 lg:px-16">
       {/* Heading */}
-      <div className="text-center max-w-2xl mx-auto mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+      <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
+        <h2 className="text-2xl md:text-4xl font-bold text-gray-900">
           Our Premium Courses
         </h2>
-        <p className="text-gray-600 mt-3">
+        <p className="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
           Comprehensive programs designed to transform you from a beginner to a
           professional trader and investor
         </p>
@@ -106,12 +106,12 @@ export default function PremiumCourses() {
 
       {/* Tabs */}
       <Tabs defaultValue="fundamental" className="max-w-5xl mx-auto">
-        <TabsList className="flex h-auto flex-wrap justify-start sm:justify-center gap-3 mb-8 bg-transparent overflow-visible">
+        <TabsList className="flex h-auto flex-wrap justify-start sm:justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 bg-transparent overflow-visible">
           {courses.map((course) => (
             <TabsTrigger
               key={course.id}
               value={course.id}
-              className="h-auto whitespace-normal text-center px-3 sm:px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-600 data-[state=active]:text-white shadow-sm"
+              className="h-auto whitespace-normal text-center px-3 sm:px-4 py-2 rounded-full border text-[11px] sm:text-sm font-medium transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-600 data-[state=active]:text-white shadow-sm"
             >
               {course.title.split(":")[0]}
             </TabsTrigger>
@@ -120,37 +120,37 @@ export default function PremiumCourses() {
 
         {courses.map((course) => (
           <TabsContent key={course.id} value={course.id}>
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl overflow-hidden">
               {/* Gradient Header */}
               <div
                 className={`bg-gradient-to-r ${course.gradient} p-5 sm:p-6`}
               >
-                <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
+                <h3 className="text-lg sm:text-2xl font-bold text-white leading-tight">
                   {course.title}
                 </h3>
-                <p className="text-white/90 mt-2 max-w-3xl">{course.subtitle}</p>
+                <p className="text-sm sm:text-base text-white/90 mt-2 max-w-3xl leading-relaxed">{course.subtitle}</p>
               </div>
 
               {/* Body */}
-              <div className="grid md:grid-cols-2 gap-8 p-5 sm:p-8">
+              <div className="grid md:grid-cols-2 gap-6 sm:gap-8 p-4 sm:p-8">
                 {/* Left: Overview */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 text-lg mb-3">
+                  <h4 className="font-semibold text-gray-900 text-base sm:text-lg mb-2 sm:mb-3">
                     Course Overview
                   </h4>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                     {course.description}
                   </p>
 
                   {/* CTA Buttons */}
-                  <div className="flex gap-4 mt-6 flex-wrap">
-                    <button className="px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow hover:opacity-90 transition flex items-center gap-2">
+                  <div className="flex gap-3 sm:gap-4 mt-5 sm:mt-6 flex-wrap">
+                    <button className="w-full sm:w-auto justify-center px-5 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow hover:opacity-90 transition flex items-center gap-2">
                       Enroll Now
                     </button>
-                    <button className="px-5 py-3 rounded-lg border font-medium text-gray-700 hover:bg-gray-100 transition">
+                    <button className="w-full sm:w-auto px-5 py-3 rounded-lg border font-medium text-gray-700 hover:bg-gray-100 transition">
                       Learn More
                     </button>
-                    <button className="flex items-center gap-2 px-5 py-3 rounded-lg border font-medium text-gray-700 hover:bg-gray-100 transition">
+                    <button className="flex w-full sm:w-auto items-center justify-center gap-2 px-5 py-3 rounded-lg border font-medium text-gray-700 hover:bg-gray-100 transition">
                       <PlayCircle className="w-5 h-5" />
                       Watch Demo
                     </button>
@@ -159,10 +159,10 @@ export default function PremiumCourses() {
 
                 {/* Right: What You'll Learn */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 text-lg mb-3">
+                  <h4 className="font-semibold text-gray-900 text-base sm:text-lg mb-2 sm:mb-3">
                     What You'll Learn
                   </h4>
-                  <ul className="space-y-4 text-gray-700">
+                  <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-700">
                     {course.features.map((feature, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <CheckCircle className="w-5 h-5 text-green-500 shrink-0" />

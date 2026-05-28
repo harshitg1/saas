@@ -54,10 +54,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white pt-16 pb-8">
+    <footer className="bg-white pt-12 sm:pt-16 pb-8">
       <div className="flex flex-col justify-center container mx-auto px-4 max-w-6xl">
         {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-20 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-20 mb-10">
           {/* Column 1 - About */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
@@ -86,7 +86,7 @@ export default function Footer() {
               </span>
             </div>
 
-            <p className="text-slate-600 text-sm leading-relaxed mb-6">
+            <p className="text-slate-600 text-sm leading-relaxed mb-4 sm:mb-6">
               Empowering traders with education, tools, and community since
               2020. We're dedicated to helping you achieve financial freedom
               through proven trading strategies.

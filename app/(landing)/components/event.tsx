@@ -44,9 +44,9 @@ const Events = () => {
   ];
 
   return (
-    <div className="py-16">
+    <div className="py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-3 gap-8 items-start">
+        <div className="grid lg:grid-cols-3 gap-7 lg:gap-8 items-start">
 
           {/* Latest Blogs */}
           <motion.div
@@ -57,7 +57,7 @@ const Events = () => {
             className="space-y-5"
           >
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
                 Latest <span className="text-theme-primary">Blogs</span>.
               </h2>
               <div className="w-8 h-0.5 bg-theme-primary rounded-full" />
@@ -71,7 +71,7 @@ const Events = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="group flex gap-3 p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-theme-primary/30 hover:shadow-sm transition-all duration-300 cursor-pointer"
+                  className="group flex gap-3 p-3 sm:p-4 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-theme-primary/30 hover:shadow-sm transition-all duration-300 cursor-pointer"
                 >
                   <div className="mt-0.5 w-8 h-8 rounded-lg bg-theme-primary/10 flex items-center justify-center flex-shrink-0">
                     <Calendar className="w-4 h-4 text-theme-primary" />
@@ -101,14 +101,14 @@ const Events = () => {
             className="space-y-5"
           >
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
                 Class <span className="text-theme-primary">Schedule</span>.
               </h2>
               <div className="w-8 h-0.5 bg-theme-primary rounded-full" />
             </div>
 
             <div className="p-1 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-              <div className="px-5 pt-5 pb-3 border-b border-slate-100 dark:border-slate-800">
+              <div className="px-4 sm:px-5 pt-4 sm:pt-5 pb-3 border-b border-slate-100 dark:border-slate-800">
                 <p className="text-xs uppercase tracking-widest font-semibold text-slate-400 dark:text-slate-500 mb-1">Weekly</p>
                 <h3 className="text-lg font-bold text-slate-800 dark:text-white">Learning at a Glance</h3>
               </div>
@@ -121,7 +121,7 @@ const Events = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                    className={`flex items-center gap-4 p-4 rounded-xl border ${item.bg} ${item.border} transition-all duration-300`}
+                    className={`flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl border ${item.bg} ${item.border} transition-all duration-300`}
                   >
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-white dark:bg-slate-800 shadow-sm`}>
                       <item.icon className={`w-4.5 h-4.5 ${item.accent}`} />
@@ -149,7 +149,7 @@ const Events = () => {
             className="space-y-5"
           >
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-1">
                 Latest <span className="text-theme-primary">Video</span>.
               </h2>
               <div className="w-8 h-0.5 bg-theme-primary rounded-full" />
