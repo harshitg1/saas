@@ -5,7 +5,13 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, Phone, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import logo from "@/public/logo.png";
 import clsx from "clsx";
 
@@ -15,12 +21,7 @@ const NAV_ITEMS = [
   { label: "Courses", href: "/courses" },
 ];
 
-const MOBILE_ITEMS = [
-  ...NAV_ITEMS,
-  { label: "Pricing", href: "/pricing" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Blog", href: "/blog" },
-];
+const MOBILE_ITEMS = NAV_ITEMS;
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -79,6 +80,11 @@ export default function Navbar() {
               side="left"
               className="flex h-full w-72 flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-0"
             >
+              <SheetTitle className="sr-only">Mobile navigation</SheetTitle>
+              <SheetDescription className="sr-only">
+                Main navigation links for Legacy-85.
+              </SheetDescription>
+
               {/* Mobile Header */}
               <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 p-4">
                 <Link

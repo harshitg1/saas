@@ -172,20 +172,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative lg:hidden overflow-hidden bg-slate-950 text-white shadow-2xl sm:rounded-2xl">
-        <div className="absolute inset-0">
-          <Image
-            src={HERO_CONTENT.backgroundImage.src}
-            alt={HERO_CONTENT.backgroundImage.alt}
-            fill
-            className="object-cover"
-            priority
-            quality={95}
-            sizes="100vw"
-            style={{ objectPosition: "center top" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/45 to-slate-950/82" />
-        </div>
+      <section className="relative lg:hidden overflow-hidden bg-purple-900/90 text-black shadow-2xl sm:rounded-2xl">
 
         <div className="relative z-10 px-4 py-5 sm:px-6 sm:py-7">
           <div>

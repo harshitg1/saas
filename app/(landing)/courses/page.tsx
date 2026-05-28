@@ -534,7 +534,7 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-8 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
           <aside className="space-y-4">
             <FilterPanel title="Search">
@@ -601,7 +601,7 @@ export default function CoursesPage() {
           </aside>
 
           <section>
-            <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div className="mb-4 flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:mb-5 sm:rounded-2xl sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm font-semibold text-slate-600">
                 Showing <span className="text-slate-950">{pageCourses.length}</span> of{" "}
                 <span className="text-slate-950">{filteredCourses.length}</span> courses
@@ -621,7 +621,7 @@ export default function CoursesPage() {
                   <option value="rating">Rating</option>
                 </select>
 
-                <div className="flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+                <div className="hidden rounded-xl border border-slate-200 bg-slate-50 p-1 sm:flex">
                   <ViewButton active={viewMode === "grid"} onClick={() => setViewMode("grid")} icon={Grid} label="Grid view" />
                   <ViewButton active={viewMode === "list"} onClick={() => setViewMode("list")} icon={List} label="List view" />
                 </div>
@@ -713,25 +713,26 @@ function CourseCard({ course, onClick }: { course: Course; onClick: () => void }
   return (
     <button
       onClick={onClick}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-100"
+      className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-100 sm:rounded-2xl"
     >
-      <div className={`relative flex h-40 items-center justify-center bg-gradient-to-br ${course.accent}`}>
+      <div className={`relative hidden h-40 items-center justify-center bg-gradient-to-br sm:flex ${course.accent}`}>
         <Icon className="h-16 w-16 text-white transition group-hover:scale-110" />
         <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-extrabold text-slate-900">
           {course.discount}
         </span>
       </div>
-      <div className="flex flex-1 flex-col p-5">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <span className="rounded-full bg-purple-50 px-3 py-1 text-xs font-bold text-primary">
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <div className="mb-3 flex items-start justify-between gap-3">
+          <span className="flex items-center gap-2 rounded-full bg-purple-50 px-3 py-1 text-xs font-bold text-primary">
+            <Icon className="h-3.5 w-3.5 sm:hidden" />
             {course.level}
           </span>
-          <span className="text-sm font-extrabold text-slate-950">{course.price}</span>
+          <span className="shrink-0 text-sm font-extrabold text-slate-950">{course.price}</span>
         </div>
-        <h3 className="text-lg font-extrabold leading-snug text-slate-950 group-hover:text-primary">
+        <h3 className="text-base font-extrabold leading-snug text-slate-950 group-hover:text-primary sm:text-lg">
           {course.title}
         </h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-6 text-slate-600">{course.description}</p>
+        <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600 sm:line-clamp-3">{course.description}</p>
         <CourseMeta course={course} />
       </div>
     </button>
@@ -744,9 +745,9 @@ function CourseRow({ course, onClick }: { course: Course; onClick: () => void })
   return (
     <button
       onClick={onClick}
-      className="group grid w-full gap-4 rounded-2xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-primary/30 hover:shadow-lg hover:shadow-purple-100 sm:grid-cols-[160px_minmax(0,1fr)]"
+      className="group grid w-full gap-4 rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm transition hover:border-primary/30 hover:shadow-lg hover:shadow-purple-100 sm:rounded-2xl sm:grid-cols-[160px_minmax(0,1fr)]"
     >
-      <div className={`flex h-36 items-center justify-center rounded-xl bg-gradient-to-br ${course.accent}`}>
+      <div className={`hidden h-36 items-center justify-center rounded-xl bg-gradient-to-br sm:flex ${course.accent}`}>
         <Icon className="h-14 w-14 text-white transition group-hover:scale-110" />
       </div>
       <div>
@@ -758,8 +759,8 @@ function CourseRow({ course, onClick }: { course: Course; onClick: () => void })
             {course.discount}
           </span>
         </div>
-        <h3 className="text-xl font-extrabold text-slate-950 group-hover:text-primary">{course.title}</h3>
-        <p className="mt-2 text-sm leading-6 text-slate-600">{course.description}</p>
+        <h3 className="text-base font-extrabold text-slate-950 group-hover:text-primary sm:text-xl">{course.title}</h3>
+        <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600 sm:line-clamp-none">{course.description}</p>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           <CourseMeta course={course} compact />
           <div className="font-extrabold text-slate-950">{course.price}</div>
@@ -771,7 +772,7 @@ function CourseRow({ course, onClick }: { course: Course; onClick: () => void })
 
 function CourseMeta({ course, compact = false }: { course: Course; compact?: boolean }) {
   return (
-    <div className={`${compact ? "" : "mt-auto pt-5"} flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold text-slate-500`}>
+    <div className={`${compact ? "" : "mt-auto pt-4 sm:pt-5"} flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold text-slate-500 sm:gap-x-4`}>
       <span className="inline-flex items-center gap-1">
         <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
         {course.rating} ({course.reviews.toLocaleString()})
@@ -780,7 +781,7 @@ function CourseMeta({ course, compact = false }: { course: Course; compact?: boo
         <Users className="h-3.5 w-3.5" />
         {course.students.toLocaleString()}
       </span>
-      <span className="inline-flex items-center gap-1">
+      <span className="hidden items-center gap-1 sm:inline-flex">
         <Video className="h-3.5 w-3.5" />
         {course.videoLessons} lessons
       </span>
