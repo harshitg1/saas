@@ -130,25 +130,25 @@ const staggerContainer: Variants = {
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 selection:bg-primary/20">
-      <section className="relative pt-10 pb-20 md:pb-32 overflow-hidden flex items-center justify-center min-h-[70vh]">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/10 dark:bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+      <section className="relative pt-10 pb-16 md:pb-32 overflow-hidden flex items-center justify-center min-h-[60vh] md:min-h-[70vh]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(800px,100vw)] h-[420px] md:h-[600px] bg-primary/10 dark:bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[min(500px,90vw)] h-[360px] md:h-[500px] bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <motion.div variants={staggerContainer} initial="hidden" animate="visible" className="max-w-4xl mx-auto">
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-800/50 backdrop-blur-md mb-8">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm font-semibold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
+              <span className="text-xs sm:text-sm font-semibold tracking-wider text-slate-800 dark:text-slate-200 uppercase">
                 {ABOUT_PAGE_CONTENT.pageHeader.subtitle}
               </span>
             </motion.div>
-            <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-8 leading-[1.1]">
+            <motion.h1 variants={fadeIn} className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6 sm:mb-8 leading-[1.1]">
               Redefining{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-600 dark:from-primary dark:to-indigo-400">
                 Financial
               </span>{" "}
               Education.
             </motion.h1>
-            <motion.p variants={fadeIn} className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed font-light max-w-3xl mx-auto">
+            <motion.p variants={fadeIn} className="text-base sm:text-xl md:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed font-light max-w-3xl mx-auto">
               {ABOUT_PAGE_CONTENT.pageHeader.description}
             </motion.p>
           </motion.div>
@@ -157,7 +157,7 @@ export default function AboutPage() {
 
       {/* 2. FLOATING STATS TAPE */}
       <section className="relative z-20 -mt-10 md:-mt-16">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -186,8 +186,8 @@ export default function AboutPage() {
       </section>
 
       {/* 3. EDITORIAL SPLIT PANELS */}
-      <section className="py-20 md:py-32 overflow-hidden bg-white dark:bg-slate-950">
-        <div className="max-w-6xl mx-auto px-6 space-y-24 md:space-y-32">
+      <section className="py-16 md:py-32 overflow-hidden bg-white dark:bg-slate-950">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-20 md:space-y-32">
 
           {/* Block: Faculty */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
@@ -198,7 +198,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="w-full order-2 md:order-1"
             >
-              <div className="pl-4 md:pl-10 text-left md:text-right">
+              <div className="pl-0 md:pl-10 text-left md:text-right">
                 <span className="text-xs uppercase tracking-widest text-indigo-500 font-bold mb-3 block">
                   Education & Mentoring
                 </span>
@@ -219,7 +219,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="w-[500px] h-[300px] md:h-[500px] relative overflow-hidden order-1 md:order-2"
+              className="w-full max-w-[500px] mx-auto h-[300px] sm:h-[420px] md:h-[500px] relative overflow-hidden order-1 md:order-2"
             >
               <Image src={ABOUT_PAGE_CONTENT.faculty.image} alt="Faculty" fill className="object-contain" />
             </motion.div>
@@ -232,7 +232,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="w-[500px] h-[400px] md:h-[500px] relative group"
+              className="w-full max-w-[500px] mx-auto h-[320px] sm:h-[420px] md:h-[500px] relative group"
             >
               <Image src={ABOUT_PAGE_CONTENT.team.image} alt="Dedicated Support" fill className="object-contain" />
             </motion.div>
@@ -243,7 +243,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="w-full"
             >
-              <div className="pr-4 md:pr-10">
+              <div className="pr-0 md:pr-10">
                 <span className="text-xs uppercase tracking-widest text-[#8b5091] font-bold mb-3 block">
                   Support Team
                 </span>
@@ -265,13 +265,13 @@ export default function AboutPage() {
       </section>
 
       {/* 4. VISION + CORE VALUES — REDESIGNED */}
-      <section className="py-28 md:py-36 bg-slate-50 dark:bg-[#08090d] relative overflow-hidden">
+      <section className="py-20 md:py-36 bg-slate-50 dark:bg-[#08090d] relative overflow-hidden">
         {/* Subtle background texture */}
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06] pointer-events-none"
           style={{ backgroundImage: "radial-gradient(circle, #8b5091 1px, transparent 1px)", backgroundSize: "32px 32px" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
           {/* Section header */}
           <motion.div
@@ -279,12 +279,12 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-2xl mb-20"
+            className="max-w-2xl mb-12 sm:mb-20"
           >
             <span className="text-xs uppercase tracking-widest text-primary font-bold mb-4 block">
               What We Stand For
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-tight">
               {ABOUT_PAGE_CONTENT.vision.sectionTitle}
             </h2>
             <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-light">
@@ -339,20 +339,20 @@ export default function AboutPage() {
       </section>
 
       {/* 5. MINIMAL CTA */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-20 sm:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-slate-900 dark:bg-black" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[300px] bg-primary/20 blur-[100px] pointer-events-none rounded-full max-w-4xl" />
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
               Ready to Transform Your Journey?
             </h2>
-            <p className="text-xl text-slate-400 mb-10 font-light max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-slate-400 mb-10 font-light max-w-2xl mx-auto">
               Master the markets with Legacy85's expert guidance. Real results. No false promises.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

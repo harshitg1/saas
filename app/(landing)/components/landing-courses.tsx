@@ -92,7 +92,7 @@ export default function PremiumCourses() {
   ];
 
   return (
-    <section className="w-full py-20  px-4 sm:px-8 lg:px-16 ">
+    <section className="w-full py-14 sm:py-20 px-4 sm:px-8 lg:px-16">
       {/* Heading */}
       <div className="text-center max-w-2xl mx-auto mb-8">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
@@ -106,12 +106,12 @@ export default function PremiumCourses() {
 
       {/* Tabs */}
       <Tabs defaultValue="fundamental" className="max-w-5xl mx-auto">
-        <TabsList className="flex flex-wrap justify-center gap-3 mb-8 bg-transparent">
+        <TabsList className="flex h-auto flex-wrap justify-start sm:justify-center gap-3 mb-8 bg-transparent overflow-visible">
           {courses.map((course) => (
             <TabsTrigger
               key={course.id}
               value={course.id}
-              className="px-4 py-2 rounded-full border text-sm font-medium transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-600 data-[state=active]:text-white shadow-sm"
+              className="h-auto whitespace-normal text-center px-3 sm:px-4 py-2 rounded-full border text-xs sm:text-sm font-medium transition-all data-[state=active]:bg-gradient-to-r data-[state=active]:from-indigo-500 data-[state=active]:to-purple-600 data-[state=active]:text-white shadow-sm"
             >
               {course.title.split(":")[0]}
             </TabsTrigger>
@@ -123,16 +123,16 @@ export default function PremiumCourses() {
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
               {/* Gradient Header */}
               <div
-                className={`bg-gradient-to-r ${course.gradient} p-6`}
+                className={`bg-gradient-to-r ${course.gradient} p-5 sm:p-6`}
               >
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight">
                   {course.title}
                 </h3>
                 <p className="text-white/90 mt-2 max-w-3xl">{course.subtitle}</p>
               </div>
 
               {/* Body */}
-              <div className="grid md:grid-cols-2 gap-8 p-8">
+              <div className="grid md:grid-cols-2 gap-8 p-5 sm:p-8">
                 {/* Left: Overview */}
                 <div>
                   <h4 className="font-semibold text-gray-900 text-lg mb-3">

@@ -150,33 +150,33 @@ export default function ContactSupport() {
   };
 
   return (
-    <div className="min-h-screen w-full border border-gray-200 bg-gradient-to-br from-purple-50 via-white to-teal-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
+    <div className="w-full border border-gray-200 bg-gradient-to-br from-purple-50 via-white to-teal-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
       {/* Main Content */}
-      <main className="pt-10 pb-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <main className="py-10 sm:pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             {/* Left Section */}
-            <div className="space-y-10">
+            <div className="space-y-8 sm:space-y-10">
               {/* Header */}
               <div className="space-y-4">
                 <div className="inline-block px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 font-bold tracking-wider text-[10px] uppercase">
                   Contact Support
                 </div>
-                <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
                   Let's grow your{" "}
                   <span className="text-purple-600 dark:text-purple-400">
                     portfolio
                   </span>{" "}
                   together.
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 text-lg max-w-md">
+                <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg max-w-md">
                   Connect with India's leading trading academy. Our friendly
                   experts are here to help you navigate the markets.
                 </p>
               </div>
               {/* Contact Form */}
               <Card className="bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border-white/80 dark:border-white/10 shadow-lg rounded-2xl">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   {success && (
                     <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
                       <p className="text-sm font-semibold text-green-700 dark:text-green-400">
@@ -187,11 +187,11 @@ export default function ContactSupport() {
 
                   <form
                     onSubmit={handleSubmit}
-                    className="space-y-6"
+                    className="space-y-5 sm:space-y-6"
                     role="form"
                   >
                     {/* Name and Email Row */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                       <div className="flex flex-col gap-2">
                         <Label
                           htmlFor="fullName"
@@ -300,7 +300,7 @@ export default function ContactSupport() {
             </div>
 
             {/* Right Section - Map */}
-            <div className="h-full flex flex-col gap-6">
+            <div className="min-h-[520px] lg:h-full flex flex-col gap-6">
               {/* Header */}
               <div className="flex items-center justify-between px-2">
                 <div className="flex flex-col">
@@ -318,7 +318,7 @@ export default function ContactSupport() {
               </div>
 
               {/* Map Container */}
-              <Card className="relative flex-1 rounded-[2rem] overflow-hidden border-purple-200 dark:border-white/10 shadow-xl bg-purple-100 dark:bg-slate-800">
+              <Card className="relative min-h-[420px] flex-1 rounded-2xl sm:rounded-[2rem] overflow-hidden border-purple-200 dark:border-white/10 shadow-xl bg-purple-100 dark:bg-slate-800">
                 <div className="absolute inset-0 z-0">
                   <img
                     alt="Modern light map of Mumbai"
@@ -334,7 +334,7 @@ export default function ContactSupport() {
                     <div className="absolute -inset-4 rounded-full bg-purple-600/20 blur-xl"></div>
                     <div className="relative w-7 h-7 rounded-full bg-purple-600 border-4 border-white shadow-xl dark:bg-purple-500"></div>
                   </div>
-                  <div className="mt-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm px-5 py-3 rounded-2xl border border-purple-200 dark:border-white/10 shadow-2xl">
+                  <div className="mt-4 max-w-[240px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm px-4 sm:px-5 py-3 rounded-2xl border border-purple-200 dark:border-white/10 shadow-2xl text-center">
                     <p className="text-xs font-bold text-gray-900 dark:text-white">
                       Tulsa Devi Commercial Complex
                     </p>

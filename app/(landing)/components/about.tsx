@@ -136,14 +136,14 @@ function TestimonialCard({
   return (
     <div
       className={cn(
-        "rounded-2xl overflow-hidden border flex flex-col bg-white dark:bg-slate-900 transition-all duration-500 h-[500px]",
+    "rounded-2xl overflow-hidden border flex flex-col bg-white dark:bg-slate-900 transition-all duration-500 h-[420px] sm:h-[500px]",
         isActive
           ? "scale-100 opacity-100 border-primary/30 shadow-xl shadow-primary/10"
           : "scale-[0.85] opacity-50 border-slate-200 dark:border-slate-700 shadow-none"
       )}
     >
       {/* Thumbnail / Video area — fixed height */}
-      <div className="relative w-full bg-black flex-shrink-0 h-[320px]">
+      <div className="relative w-full bg-black flex-shrink-0 h-[250px] sm:h-[320px]">
         {/* Background static/muted video (Acts as thumbnail) */}
         <video src={t.videoSrc} className="w-full h-full object-cover" muted />
 
@@ -189,7 +189,7 @@ function TestimonialCard({
       </div>
 
       {/* Text area */}
-      <div className="flex flex-col justify-between p-4 flex-shrink-0 h-[180px] border-t border-slate-100 dark:border-slate-800">
+      <div className="flex flex-col justify-between p-4 flex-shrink-0 h-[170px] sm:h-[180px] border-t border-slate-100 dark:border-slate-800">
         <div>
           <Quote className="w-3 h-3 text-primary/40 mb-2" />
           <p className="text-[12px] text-slate-700 dark:text-slate-300 leading-relaxed line-clamp-3">
@@ -244,13 +244,13 @@ function TestimonialCarousel() {
         <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">
           What Our Students Say
         </p>
-        <h3 className="text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+        <h3 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight">
           Real Results, <span className="text-primary">Real Stories</span>.
         </h3>
       </motion.div>
 
       {/* Carousel */}
-      <div className="p-10 max-w-6xl mx-auto w-full">
+      <div className="px-0 py-8 sm:p-10 max-w-6xl mx-auto w-full">
         <Carousel
           className="w-full"
           opts={{ loop: true, align: "center" }}
@@ -260,7 +260,7 @@ function TestimonialCarousel() {
             {TESTIMONIALS.map((t, index) => (
               <CarouselItem
                 key={t.id}
-                className="basis-1/2 md:basis-1/3 lg:basis-1/3 px-2"
+                className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/3 px-2"
               >
                 <TestimonialCard
                   t={t}
@@ -273,8 +273,8 @@ function TestimonialCarousel() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-6 md:-left-12" />
-          <CarouselNext className="-right-6 md:-right-12" />
+          <CarouselPrevious className="left-2 sm:-left-6 md:-left-12" />
+          <CarouselNext className="right-2 sm:-right-6 md:-right-12" />
         </Carousel>
       </div>
 
@@ -300,7 +300,7 @@ export default function RevampedAbout() {
   const HeadingTag = ABOUT_CONTENT.heading.tag as React.ElementType;
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 via-white to-indigo-50 overflow-hidden dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <section className="relative py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 via-white to-indigo-50 overflow-hidden dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
       <div className="max-w-7xl mx-auto z-10 relative">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -311,10 +311,10 @@ export default function RevampedAbout() {
           <p className="font-semibold text-lg text-primary mb-2">
             {ABOUT_CONTENT.heading.subheading}
           </p>
-          <HeadingTag className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          <HeadingTag className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
             {ABOUT_CONTENT.heading.main}
           </HeadingTag>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
+          <p className="mt-5 sm:mt-6 max-w-3xl mx-auto text-base sm:text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
             {ABOUT_CONTENT.introduction.text}
           </p>
         </motion.div>
@@ -326,7 +326,7 @@ export default function RevampedAbout() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative h-[450px] lg:h-[550px]"
+            className="relative h-[320px] sm:h-[450px] lg:h-[550px] mb-10 lg:mb-0"
           >
             <div className="relative w-full h-full rounded-2xl shadow-2xl shadow-purple-200/80 overflow-hidden">
               <Image
@@ -337,7 +337,7 @@ export default function RevampedAbout() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute -bottom-8 left-4 w-40 h-40 md:w-48 md:h-48 z-10">
+            <div className="absolute -bottom-8 left-4 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 z-10">
               <div className="relative w-full h-full rounded-2xl shadow-xl border-4 border-white overflow-hidden">
                 <Image
                   src={ABOUT_CONTENT.images.overlay.src}
@@ -357,7 +357,7 @@ export default function RevampedAbout() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="space-y-10"
           >
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
               {ABOUT_CONTENT.highlights.map((stat, index) => (
                 <div
                   key={index}
@@ -368,7 +368,7 @@ export default function RevampedAbout() {
                     className="w-8 h-8 mx-auto text-primary mb-2"
                     strokeWidth={2}
                   />
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                     {stat.value}
                   </div>
                   <div className="text-sm font-medium text-gray-600 dark:text-slate-400">
@@ -403,7 +403,7 @@ export default function RevampedAbout() {
         </div>
 
         {/* === TESTIMONIAL CAROUSEL === */}
-        <div className="mt-28 mb-4">
+        <div className="mt-20 sm:mt-28 mb-4">
           <TestimonialCarousel />
         </div>
       </div>

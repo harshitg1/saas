@@ -32,14 +32,14 @@ export default function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-white dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-        <div className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 md:px-8 lg:px-16 xl:px-40">
-          <Link href="/" className=" flex items-center gap-2">
+        <div className="container mx-auto flex h-14 md:h-16 items-center justify-between px-4 sm:px-6 lg:px-12 xl:px-24">
+          <Link href="/" className="flex items-center gap-2">
             <Image
               src={logo}
               alt="Legacy-85 Logo"
               width={70}
               height={70}
-              className=" h-28 w-28 object-contain"
+              className="h-16 w-16 md:h-20 md:w-20 object-contain"
               priority
             />
           </Link>

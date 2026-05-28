@@ -60,7 +60,7 @@ export default function MentoringComponent() {
   ];
 
   return (
-    <section className="relative p-20 bg-gradient-to-br from-slate-100 via-white to-purple-50 overflow-hidden">
+    <section className="relative px-4 py-14 sm:px-6 sm:py-16 lg:p-20 bg-gradient-to-br from-slate-100 via-white to-purple-50 overflow-hidden">
       {/* Background Graphics */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Abstract shapes */}
@@ -110,7 +110,7 @@ export default function MentoringComponent() {
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]"></div>
 
         {/* Decorative Lines */}
-        <div className="absolute left-1/2 top-[10%] bottom-[10%] w-px bg-gradient-to-b from-transparent via-theme-primary/20 to-transparent"></div>
+        <div className="absolute left-1/2 top-[10%] bottom-[10%] hidden lg:block w-px bg-gradient-to-b from-transparent via-theme-primary/20 to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -129,7 +129,7 @@ export default function MentoringComponent() {
               </span>
             </div>
 
-            <h2 className="text-5xl  font-bold text-slate-900 mb-3 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 leading-tight">
               How We Deliver
               <span className="block text-theme-primary ">Outstanding</span>
               <span className="block">Mentoring Results</span>
@@ -143,7 +143,7 @@ export default function MentoringComponent() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:w-2/5"
           >
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
               Creating cutting-edge trading education that combines innovation
               and functionality to meet the evolving needs of tomorrow's
               financial markets and traders.
@@ -182,7 +182,7 @@ export default function MentoringComponent() {
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 onMouseEnter={() => setHoveredStep(step.id)}
                 onMouseLeave={() => setHoveredStep(null)}
-                className={`relative bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 z-10 
+                className={`relative bg-white rounded-2xl shadow-xl p-6 sm:p-8 transition-all duration-300 z-10 
                   ${
                     hoveredStep === step.id
                       ? "transform -translate-y-3"
@@ -242,7 +242,7 @@ export default function MentoringComponent() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mt-24 bg-white rounded-2xl p-8 shadow-xl overflow-hidden relative"
+          className="mt-16 sm:mt-24 bg-white rounded-2xl p-5 sm:p-8 shadow-xl overflow-hidden relative"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-purple-50 opacity-70"></div>
 
@@ -257,20 +257,20 @@ export default function MentoringComponent() {
                 the difference expert guidance makes.
               </p>
 
-              <div className="flex flex-wrap gap-4">
-                <button className="px-6 py-3 bg-theme-primary hover:bg-theme-primary/90  font-semibold rounded-lg shadow-lg shadow-theme-primary/20 hover:shadow-xl hover:shadow-theme-primary/30 transition-all duration-300 flex items-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+                <button className="px-5 sm:px-6 py-3 bg-theme-primary hover:bg-theme-primary/90 font-semibold rounded-lg shadow-lg shadow-theme-primary/20 hover:shadow-xl hover:shadow-theme-primary/30 transition-all duration-300 flex items-center justify-center">
                   <Users className="mr-2 w-5 h-5" />
                   <span>Join Our Program</span>
                 </button>
 
-                <button className="px-6 py-3 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-semibold rounded-lg transition-all duration-300 flex items-center">
+                <button className="px-5 sm:px-6 py-3 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-semibold rounded-lg transition-all duration-300 flex items-center justify-center">
                   <BookOpen className="mr-2 w-5 h-5" />
                   <span>Learn More</span>
                 </button>
               </div>
             </div>
 
-            <div className="lg:w-1/2 h-64 relative">
+            <div className="w-full lg:w-1/2 h-56 sm:h-64 relative">
               {/* Trading Chart Graphic */}
               <div className="absolute inset-0 bg-gradient-to-r from-theme-primary/5 to-theme-primary/10 rounded-xl"></div>
               <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-green-500/20 to-transparent"></div>
@@ -301,12 +301,12 @@ export default function MentoringComponent() {
               </svg>
 
               {/* Trading Stats floating */}
-              <div className="absolute top-10 right-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md border border-slate-100">
+              <div className="absolute top-6 right-4 sm:top-10 sm:right-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md border border-slate-100">
                 <div className="text-xs text-slate-500">Success Rate</div>
                 <div className="text-lg font-bold text-theme-primary">92%</div>
               </div>
 
-              <div className="absolute bottom-10 left-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md border border-slate-100">
+              <div className="absolute bottom-6 left-4 sm:bottom-10 sm:left-10 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-md border border-slate-100">
                 <div className="text-xs text-slate-500">Average Growth</div>
                 <div className="text-lg font-bold text-green-500">+31%</div>
               </div>
