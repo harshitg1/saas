@@ -23,6 +23,7 @@ import { div } from "framer-motion/m";
 interface ContactFormData {
   fullName: string;
   email: string;
+  phone: string;
   topic: string;
   message: string;
 }
@@ -30,8 +31,10 @@ interface ContactFormData {
 interface ContactFormErrors {
   fullName?: string;
   email?: string;
+  phone?: string;
   topic?: string;
   message?: string;
+  submit?: string;
 }
 
 interface ContactInfo {
@@ -46,6 +49,7 @@ export default function ContactSupport() {
   const [formData, setFormData] = useState<ContactFormData>({
     fullName: "",
     email: "",
+    phone: "",
     topic: "",
     message: "",
   });
@@ -92,6 +96,12 @@ export default function ContactSupport() {
       newErrors.email = "Please enter a valid email";
     }
 
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Contact number is required";
+    } else if (!/^(\+91[\s-]?)?[6-9]\d{9}$/.test(formData.phone.trim())) {
+      newErrors.phone = "Please enter a valid Indian contact number";
+    }
+
     if (!formData.topic.trim()) {
       newErrors.topic = "Topic of interest is required";
     }
@@ -133,17 +143,36 @@ export default function ContactSupport() {
     setLoading(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to submit message");
+      }
 
       setSuccess(true);
-      setFormData({ fullName: "", email: "", topic: "", message: "" });
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        topic: "",
+        message: "",
+      });
 
       setTimeout(() => {
         setSuccess(false);
       }, 3000);
     } catch (err) {
       console.error("Error submitting form:", err);
+      setErrors((prev) => ({
+        ...prev,
+        submit: "We could not send your message right now. Please try again.",
+      }));
     } finally {
       setLoading(false);
     }
@@ -181,6 +210,13 @@ export default function ContactSupport() {
                     <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
                       <p className="text-sm font-semibold text-green-700 dark:text-green-400">
                         ✓ Message sent successfully! We'll get back to you soon.
+                      </p>
+                    </div>
+                  )}
+                  {errors.submit && (
+                    <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
+                      <p className="text-sm font-semibold text-red-700 dark:text-red-400">
+                        {errors.submit}
                       </p>
                     </div>
                   )}
@@ -236,6 +272,30 @@ export default function ContactSupport() {
                           </p>
                         )}
                       </div>
+                    </div>
+
+                    {/* Phone */}
+                    <div className="flex flex-col gap-2">
+                      <Label
+                        htmlFor="phone"
+                        className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400"
+                      >
+                        Contact Number
+                      </Label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="+91 9876543210"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="bg-white/50 dark:bg-white/5 border-purple-200 dark:border-white/10 rounded-xl h-12 sm:h-14 focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 transition-all"
+                      />
+                      {errors.phone && (
+                        <p className="text-xs text-red-500 font-medium">
+                          {errors.phone}
+                        </p>
+                      )}
                     </div>
 
                     {/* Topic */}

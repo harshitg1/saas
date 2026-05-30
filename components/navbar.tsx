@@ -26,9 +26,6 @@ const MOBILE_ITEMS = NAV_ITEMS;
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const isMobile =
-    typeof window !== "undefined" &&
-    /Mobi|Android/i.test(window.navigator.userAgent);
 
   return (
     <>
@@ -61,6 +58,13 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
+          </div>
+
+          {/* Desktop Login Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <Button asChild variant="outline">
+              <Link href="/admin/login">Log In</Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -128,11 +132,13 @@ export default function Navbar() {
               {/* Mobile Footer */}
               <div className="border-t border-slate-200 dark:border-slate-800 p-6 space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <Button
-                    variant="outline"
-                    className="w-full border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    Log In
+                  <Button asChild variant="outline">
+                    <Link
+                      href="/admin/login"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      Log In
+                    </Link>
                   </Button>
                   <Button className="w-full bg-theme-primary hover:bg-theme-primary-dark text-black">
                     Sign Up
